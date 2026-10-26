@@ -13,6 +13,7 @@ class Verified(BaseModel):
     """Fields added by the deterministic verify pass."""
 
     span: Optional[Span] = None
+    match: Optional[str] = None  # exact | normalized | fuzzy
     flags: list[str] = Field(default_factory=list)
 
 

@@ -208,9 +208,35 @@ function flagBadges(item, opts = {}) {
   return out.length ? h("div", { class: "flags" }, out) : null;
 }
 
+const MATCH_LABELS = {
+  exact: ["✓ Exact quote", "vchip"],
+  normalized: ["✓ Matches (spacing or case differs)", "vchip"],
+  fuzzy: ["≈ Closest sentence, not word-for-word", "vchip approx"],
+};
+
 function sourceBtn(item) {
   if (!item.span) return null;
-  return h("button", { class: "link", onclick: () => showSource([item.span]), "aria-label": "Show source sentence in your paperwork" }, "Show source");
+  const [label, cls] = MATCH_LABELS[item.match] || MATCH_LABELS.exact;
+  return h("div", { class: "src-row" },
+    h("button", { class: "link", onclick: () => showSource([item.span]), "aria-label": "Show source sentence in your paperwork" }, "Show source"),
+    h("span", { class: cls }, label));
+}
+
+function allItems(a) {
+  return [...a.summary, ...a.medications, ...a.red_flags, ...a.follow_ups];
+}
+
+/* "Verified 21 of 22 lines": how many output lines code could find in the original. */
+function verifyBar(a) {
+  const items = allItems(a);
+  const ok = items.filter((i) => i.span).length;
+  const flagged = items.filter((i) => (i.flags || []).length).length;
+  const pct = items.length ? Math.round((ok / items.length) * 100) : 0;
+  return h("section", { class: "verify" },
+    h("div", { class: "verify-top" },
+      h("div", {}, h("b", { class: "verify-num" }, `${ok} of ${items.length}`), " lines found in your paperwork"),
+      flagged ? h("a", { href: "#/nurse", class: "verify-flag" }, `${flagged} flagged for your nurse →`) : h("span", { class: "verify-flag ok" }, "Nothing flagged")),
+    h("div", { class: "verify-track", role: "img", "aria-label": `${ok} of ${items.length} lines verified` }, h("i", { style: `width:${pct}%` })));
 }
 
 function renderResults() {
@@ -245,6 +271,7 @@ function renderResults() {
 
   pane.replaceChildren(
     h("div", { class: "row between", style: "margin-top:16px" }, grade),
+    verifyBar(a),
     summary, medsCard, flagsCard, fuCard, translateCard(), askCard());
 }
 
@@ -504,10 +531,11 @@ function onReset() {
 
 /* ---------- hero behaviour ---------- */
 function initHero() {
-  $("cta-try").addEventListener("click", () => {
+  // One click from the hero: load the pneumonia sample and run it.
+  $("cta-try").addEventListener("click", async () => {
     $("input-pane").scrollIntoView({ behavior: "smooth", block: "start" });
-    const first = document.querySelector("#sample-row button");
-    if (first) setTimeout(() => first.focus({ preventScroll: true }), 450);
+    await loadSample("pneumonia");
+    if (state.text) onAnalyze();
   });
   const art = $("hero-art");
   if (!matchMedia("(prefers-reduced-motion: reduce)").matches && matchMedia("(pointer: fine)").matches) {

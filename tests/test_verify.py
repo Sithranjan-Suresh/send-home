@@ -96,3 +96,12 @@ def test_corrupted_quote_flagged_and_item_kept():
     a = verify_analysis(DOC, a)
     assert "quote_not_found" in a.medications[0].flags
     assert a.medications[0].span is None and len(a.medications) == n_before
+
+
+def test_match_type_recorded():
+    a = verify_analysis(DOC, Analysis(summary=[
+        {"text": "a", "source_quote": "Discharge Summary"},
+        {"text": "b", "source_quote": "TAKE amoxicillin 500 mg by mouth three times a day"},
+        {"text": "c", "source_quote": "Call your docter if you have a fevr above 101 F."},
+        {"text": "d", "source_quote": "Nothing like this appears."}]))
+    assert [i.match for i in a.summary] == ["exact", "normalized", "fuzzy", None]

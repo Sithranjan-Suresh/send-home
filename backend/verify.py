@@ -133,8 +133,9 @@ def clean_null(v: str | None) -> str | None:
 
 
 def _check(text: str, item) -> None:
-    span, _match_type, ambiguous = locate_quote(text, item.source_quote)
+    span, match_type, ambiguous = locate_quote(text, item.source_quote)
     item.span = span
+    item.match = match_type if span else None
     item.flags = [f for f in item.flags if f not in ("quote_not_found", "ambiguous_match")]
     if span is None:
         item.flags.append("quote_not_found")
