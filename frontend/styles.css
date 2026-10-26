@@ -427,3 +427,17 @@ input[type=text]:focus { outline: none; border-color: var(--ink); box-shadow: 0 
 @media (max-width: 699px) { table.meds-table { display: none; } }
 .cache-note { margin: -6px 4px 12px; font: 400 .78rem var(--mono); color: var(--muted); }
 table.meds-table td:nth-child(2), table.meds-table th:nth-child(2) { min-width: 11rem; }
+
+/* ---------- Break it (tamper test) ---------- */
+.tamper-box { margin-top: 14px; padding: 12px 14px; border-radius: 16px; background: var(--paper); border: 1px dashed var(--line-2); display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; font-size: .95rem; }
+.tamper-box.live { display: block; background: var(--coral-soft); border: 1px solid rgba(229, 72, 77, .4); color: var(--coral-ink); }
+.tamper-head { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
+.tamper-box ul { list-style: none; margin: 10px 0; padding: 0; display: grid; gap: 8px; }
+.tamper-box li { background: #fff; border-radius: 12px; padding: 10px 14px; display: grid; gap: 2px; color: var(--ink); }
+.tamper-what { font-weight: 600; }
+.tamper-res { font-size: .88rem; }
+.tamper-box li.caught .tamper-res { color: #0b6b5f; font-weight: 600; }
+.tamper-box li.missed .tamper-res { color: var(--coral-ink); font-weight: 700; }
+button.break { border-color: var(--coral); color: var(--coral-ink); background: #fff; font-weight: 600; }
+button.break:hover:not(:disabled) { background: var(--coral); color: #fff; border-color: var(--coral); }
+.badge.tamper { background: var(--coral-soft); color: var(--coral-ink); border: 1px dashed var(--coral); }

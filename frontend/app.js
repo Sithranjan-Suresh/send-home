@@ -201,6 +201,7 @@ function renderStatus() {
 
 function flagBadges(item, opts = {}) {
   const out = [];
+  if (item._tampered) out.push(h("span", { class: "badge tamper" }, "✎ Edited by Break it"));
   for (const f of item.flags || []) {
     if (f === "dose_missing" && opts.skipDose) continue;
     if (MSG[f]) out.push(h("span", { class: "badge" }, "⚠ " + MSG[f]));
@@ -223,7 +224,7 @@ function sourceBtn(item) {
 }
 
 function cacheNote() {
-  if (!state.cached) return null;
+  if (!state.cached || state.tamper) return null;
   const m = MSG.cache_meta || {};
   const when = [m.model, m.date].filter(Boolean).join(", ");
   return h("p", { class: "cache-note" }, "Saved result from a real run of this pipeline on the sample" + (when ? ` (${when})` : "") + ". Paste your own text to run it live.");
@@ -243,7 +244,80 @@ function verifyBar(a) {
     h("div", { class: "verify-top" },
       h("div", {}, h("b", { class: "verify-num" }, `${ok} of ${items.length}`), " lines found in your paperwork"),
       flagged ? h("a", { href: "#/nurse", class: "verify-flag" }, `${flagged} flagged for your nurse →`) : h("span", { class: "verify-flag ok" }, "Nothing flagged")),
-    h("div", { class: "verify-track", role: "img", "aria-label": `${ok} of ${items.length} lines verified` }, h("i", { style: `width:${pct}%` })));
+    h("div", { class: "verify-track", role: "img", "aria-label": `${ok} of ${items.length} lines verified` }, h("i", { style: `width:${pct}%` })),
+    tamperPanel());
+}
+
+/* ---------- "Break it": corrupt two lines, let the server's checker catch them ---------- */
+const FAKE_LINES = {
+  red_flags: { text: "You can wait several days before calling anyone.", quote: "It is safe to wait several days before seeking care." },
+  summary: { text: "You can stop your medicines as soon as you feel better.", quote: "Stop all medicines as soon as you feel better." },
+};
+
+function tamperPanel() {
+  const t = state.tamper;
+  if (!t) {
+    return h("div", { class: "tamper-box" },
+      h("div", {}, h("b", {}, "Don't take our word for it."), " Corrupt two lines of this plan and watch the checker catch them."),
+      h("button", { class: "break", onclick: onBreakIt }, "Break it"));
+  }
+  const caught = t.changes.filter((c) => c.caught).length;
+  return h("div", { class: "tamper-box live", role: "status" },
+    h("div", { class: "tamper-head" },
+      h("b", {}, `We edited ${t.changes.length} lines. The checker caught ${caught} of ${t.changes.length}.`),
+      h("button", { onclick: onRestore }, "Restore original")),
+    h("ul", {}, t.changes.map((c) => h("li", { class: c.caught ? "caught" : "missed" },
+      h("span", { class: "tamper-what" }, c.title),
+      h("span", { class: "tamper-res" }, c.caught ? "✓ Caught: " + MSG[c.expect] : "✗ Not caught")))),
+    h("p", { class: "small" }, "These edits were made in your browser just now. The same server code that checks the AI re-checked them against your original paperwork. Open “Questions for your nurse” to see them listed."));
+}
+
+async function onBreakIt() {
+  if (!state.analysis || state.loading) return;
+  const original = JSON.parse(JSON.stringify(state.analysis));
+  const a = JSON.parse(JSON.stringify(state.analysis));
+  const changes = [];
+
+  const mi = a.medications.findIndex((m) => m.dose && /\d/.test(m.dose) && m.source_quote);
+  if (mi >= 0) {
+    const m = a.medications[mi];
+    const before = m.dose;
+    m.dose = before.replace(/\d+(\.\d+)?/, (n) => String(Number(n) * 10));
+    changes.push({ group: "medications", idx: mi, expect: "number_mismatch", title: `${m.name}: dose changed from “${before}” to “${m.dose}”` });
+  }
+  const group = a.red_flags.length ? "red_flags" : (a.summary.length ? "summary" : null);
+  if (group) {
+    const fake = FAKE_LINES[group];
+    const item = a[group][0];
+    item.text = fake.text;
+    item.source_quote = fake.quote;
+    changes.push({ group, idx: 0, expect: "quote_not_found", title: `Added a false line: “${fake.text}”` });
+  }
+  if (!changes.length) return;
+
+  try {
+    const res = await api("/api/verify", { text: state.text, analysis: a });
+    for (const c of changes) {
+      const item = res.analysis[c.group][c.idx];
+      item._tampered = true;
+      c.caught = (item.flags || []).includes(c.expect);
+    }
+    state.analysis = res.analysis;
+    state.tamper = { original, changes };
+    state.highlights = [];
+    state.error = null;
+  } catch (err) {
+    state.error = err.message;
+  }
+  render();
+}
+
+function onRestore() {
+  if (!state.tamper) return;
+  state.analysis = state.tamper.original;
+  state.tamper = null;
+  state.highlights = [];
+  render();
 }
 
 function renderResults() {
@@ -481,6 +555,7 @@ async function loadSample(id) {
 }
 
 function resetResults() {
+  state.tamper = null;
   state.analysis = null; state.grades = null; state.cached = false; state.message = null; state.translation = null;
   state.language = "en"; state.qa = []; state.highlights = [];
 }

@@ -11,6 +11,7 @@
 |---|---|
 | ![Hero: a marker highlights a sentence, a thread links it to its plain-language line, and a missing dose is flagged instead of guessed](docs/screenshots/01-hero.jpg) | ![Click-to-source: the original sentence highlighted, with a verified-lines bar and reading grade](docs/screenshots/02-click-to-source.jpg) |
 | ![A medicine with no dose in the sheet shows "Dose not listed" and every row has a verification receipt](docs/screenshots/03-dose-not-listed.jpg) | ![Report card with reading grade before and after](docs/screenshots/04-report-card.jpg) |
+| ![Break it: two corrupted lines, both caught by the checker, verified count drops to 19 of 20](docs/screenshots/05-break-it.jpg) | |
 
 ## The problem
 
@@ -25,7 +26,8 @@ People leave the hospital with dense, jargon-heavy paperwork and little time to 
 5. Switch to Spanish. A separate back-translation into English is shown beside it so you can check a language you don't read. Numbers are compared and mismatches are warned about.
 6. Ask questions. Answers come only from the document; anything else gets exactly *"That isn't in your paperwork — ask your nurse."*
 7. An approximate reading grade is shown for the original and for the plain-language output.
-8. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
+8. **Break it:** a tamper test. One click corrupts two lines of the plan (it multiplies a dose by ten and adds a dangerous false line with a made-up quote). The server's checker re-verifies them against your original paperwork and flags both. The verified count drops, the lines show "Edited by Break it", and "Restore original" undoes it.
+9. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
 
 ### Pages
 
