@@ -78,7 +78,11 @@ Open <http://localhost:8000>. Run the tests with `python -m pytest -q tests` (no
 
 `LLM_MOCK=1` in `.env` runs the app against canned responses with no API calls.
 
-**Rate limits and the sample cache:** the free Groq tier allows about 8,000 tokens per minute for this model, i.e. roughly two analyses per minute. To keep demos reliable, the server pre-computes the three built-in sample sheets in the background after startup (about four minutes, spaced out) and keeps those results, plus the two suggested questions, in memory. **Only the built-in sample sheets are cached. Text you paste is never cached or stored.** Set `WARM_SAMPLES=0` to turn the warm-up off. If you do hit the limit, the app says so and asks you to retry in about 20 seconds.
+**Free-tier limits, saved sample runs, and fallback (read this before judging the demo):** Groq's free tier allows about 8,000 tokens per minute and 200,000 tokens per day per model. To keep the demo reliable:
+
+- The three built-in sample sheets ship with **saved outputs from a real run of this exact pipeline** (`samples/precomputed.json`: analysis, the two suggested questions, and the Spanish translation + back-translation). They load instantly and work without an API key. The results page says "Saved result from a real run" whenever it shows one. Rebuild them with `python -m backend.precompute`.
+- **Anything you paste, and any other question, always goes to the live model.** Pasted text is never cached or stored.
+- If the main model's daily limit is exhausted, the client falls back to `LLM_FALLBACK_MODELS` (default `openai/gpt-oss-20b`), and if every model is limited the app says so and asks you to retry shortly.
 
 ## Accuracy check (5 synthetic sheets)
 
