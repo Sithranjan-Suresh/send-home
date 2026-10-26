@@ -1,0 +1,52 @@
+{
+  "_note": "Hand-written from reading the sample sheets. medications: name_contains (lowercase substring of name) and dose_numbers (numbers that must appear in the dose; null means the sheet gives no dose). red_flags / follow_ups: keywords that must each appear in the text or source quote of some item.",
+  "pneumonia.txt": {
+    "medications": [
+      {"name_contains": "amoxicillin", "dose_numbers": ["875", "125"]},
+      {"name_contains": "acetaminophen", "dose_numbers": ["500"]},
+      {"name_contains": "guaifenesin", "dose_numbers": ["600"]},
+      {"name_contains": "albuterol", "dose_numbers": ["2"]}
+    ],
+    "red_flags": ["101", "cough is getting worse", "vomiting", "rash", "trouble breathing", "chest pain", "blue or gray lips", "confusion", "blood"],
+    "follow_ups": ["primary care", "chest x-ray"]
+  },
+  "heart_failure.txt": {
+    "medications": [
+      {"name_contains": "furosemide", "dose_numbers": ["40"]},
+      {"name_contains": "lisinopril", "dose_numbers": ["10"]},
+      {"name_contains": "metoprolol", "dose_numbers": null},
+      {"name_contains": "potassium", "dose_numbers": ["20"]}
+    ],
+    "red_flags": ["3 pounds", "swell", "pillows", "dizzy", "dry cough", "chest pain", "shortness of breath at rest", "fainting", "pink"],
+    "follow_ups": ["heart failure clinic", "blood tests", "cardiology"]
+  },
+  "appendectomy.txt": {
+    "medications": [
+      {"name_contains": "oxycodone", "dose_numbers": ["5"]},
+      {"name_contains": "ibuprofen", "dose_numbers": ["400"]},
+      {"name_contains": "docusate", "dose_numbers": ["100"]}
+    ],
+    "red_flags": ["100.4", "redness", "vomiting", "bowel movement", "severe belly pain", "chest pain", "calf"],
+    "follow_ups": ["marchetti"]
+  },
+  "eval_4.txt": {
+    "medications": [
+      {"name_contains": "metformin", "dose_numbers": ["500"]},
+      {"name_contains": "glargine", "dose_numbers": ["20"]},
+      {"name_contains": "ciprofloxacin", "dose_numbers": ["500"]},
+      {"name_contains": "glucose", "dose_numbers": ["4"]}
+    ],
+    "red_flags": ["300", "burning", "100.4", "sleepy", "fruity", "pass out", "below 70"],
+    "follow_ups": ["primary care", "diabetes education", "eye exam"]
+  },
+  "eval_5.txt": {
+    "medications": [
+      {"name_contains": "aspirin", "dose_numbers": ["81"]},
+      {"name_contains": "clopidogrel", "dose_numbers": ["75"]},
+      {"name_contains": "atorvastatin", "dose_numbers": ["40"]},
+      {"name_contains": "amlodipine", "dose_numbers": null}
+    ],
+    "red_flags": ["drooping", "weakness", "speaking", "headache", "bruising"],
+    "follow_ups": ["neurology", "primary care", "monitor"]
+  }
+}
