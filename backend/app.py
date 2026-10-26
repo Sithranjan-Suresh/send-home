@@ -53,6 +53,11 @@ async def user_error(_: Request, e: service.UserError):
     return err(e.status, e.code, e.message)
 
 
+@app.exception_handler(llm.LLMRateLimited)
+async def llm_rate(_: Request, e):
+    return err(429, "busy", "The AI is busy (free-tier limit). Wait about 20 seconds and press the button again.")
+
+
 @app.exception_handler(llm.LLMTimeout)
 async def llm_timeout(_: Request, e):
     return err(504, "timeout", "The AI took too long to answer. Please try again.")
@@ -71,6 +76,14 @@ async def anything(_: Request, e):
 @app.exception_handler(422)
 async def bad_request(_: Request, e):
     return err(422, "bad_request", "That request wasn't formatted correctly.")
+
+
+@app.on_event("startup")
+def warm():
+    import threading
+
+    if config.WARM_SAMPLES and not config.LLM_MOCK and config.LLM_API_KEY:
+        threading.Thread(target=service.warm_samples, daemon=True).start()
 
 
 @app.get("/api/health")

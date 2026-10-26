@@ -46,7 +46,8 @@ def test_health():
     assert client.get("/api/health").json() == {"ok": True}
 
 
-def test_empty_and_too_long():
+def test_empty_and_too_long(monkeypatch):
+    fake(monkeypatch, GOOD)
     assert post("/api/analyze", text="   ").json()["error"] == "empty_input"
     r = post("/api/analyze", text="a" * (config.MAX_CHARS + 1))
     assert r.status_code == 400 and r.json()["error"] == "too_long"
@@ -182,3 +183,21 @@ def test_mock_mode_roundtrip(monkeypatch, field):
     monkeypatch.setattr(config, "LLM_MOCK", True)
     r = post("/api/analyze", text="Diagnosis: Community-acquired pneumonia")
     assert r.status_code == 200 and r.json()["analysis"]["summary"][0]["span"] is not None
+
+
+def test_only_builtin_samples_are_cached(monkeypatch):
+    from pathlib import Path
+
+    service._cache.clear()
+    sample = Path("samples/pneumonia.txt").read_text(encoding="utf-8")
+    quote = "Principal diagnosis: Community-acquired pneumonia, right lower lobe, with transient hypoxemia, resolved."
+    reply = {"is_discharge_doc": True, "summary": [{"text": "Pneumonia.", "source_quote": quote}],
+             "medications": [], "red_flags": [], "follow_ups": []}
+    calls = fake(monkeypatch, reply)
+    assert post("/api/analyze", text=sample).status_code == 200
+    assert post("/api/analyze", text=sample).status_code == 200
+    assert len(calls) == 1  # second request served from the sample cache
+    assert post("/api/analyze", text=DOC).status_code == 200
+    assert post("/api/analyze", text=DOC).status_code == 200
+    assert len(calls) == 3  # user-pasted text is never cached
+    service._cache.clear()

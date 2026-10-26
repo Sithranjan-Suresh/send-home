@@ -12,6 +12,7 @@ LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
 ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN", "http://localhost:8000")
 LLM_MOCK = os.getenv("LLM_MOCK", "0") == "1"
+WARM_SAMPLES = os.getenv("WARM_SAMPLES", "1") == "1"
 RATE_LIMIT_PER_MIN = int(os.getenv("RATE_LIMIT_PER_MIN", "0"))  # 0 = off
 
 MAX_CHARS = 8000

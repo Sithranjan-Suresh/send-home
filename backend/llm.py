@@ -19,6 +19,10 @@ class LLMTimeout(LLMError):
     """Provider did not answer in time."""
 
 
+class LLMRateLimited(LLMError):
+    """Provider kept answering 429 (free-tier token limit)."""
+
+
 class LLMBadOutput(Exception):
     """Provider answered, but not with usable JSON."""
 
@@ -74,6 +78,8 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
             raise LLMError("unexpected provider response")
         if attempt < 1:
             time.sleep(1)
+    if isinstance(last, LLMError) and "429" in str(last):
+        raise LLMRateLimited("rate limited")
     raise last or LLMError("unknown provider failure")
 
 
