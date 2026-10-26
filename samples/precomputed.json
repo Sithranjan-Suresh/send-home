@@ -1,0 +1,1449 @@
+{
+ "meta": {
+  "model": "qwen/qwen3.8-27b",
+  "date": "2026-10-26"
+ },
+ "entries": [
+  {
+   "key": [
+    "analyze",
+    "3564b8f3b810ef0e9b7c68e86f39499374fbeeb9b8eb2e22f8e74c4276122934"
+   ],
+   "data": {
+    "analysis": {
+     "is_discharge_doc": true,
+     "summary": [
+      {
+       "span": {
+        "start": 265,
+        "end": 369
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You were treated for pneumonia in the right lower lobe of your lung.",
+       "source_quote": "Principal diagnosis: Community-acquired pneumonia, right lower lobe, with transient hypoxemia, resolved."
+      },
+      {
+       "span": {
+        "start": 588,
+        "end": 682
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You received IV antibiotics and oxygen for two days.",
+       "source_quote": "Empiric intravenous antibiotic therapy and supplemental oxygen were administered for two days."
+      },
+      {
+       "span": {
+        "start": 683,
+        "end": 799
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your oxygen levels are normal and you have had no fever for over 24 hours.",
+       "source_quote": "Oxygen saturation is now within normal limits on room air, and the patient has been afebrile for more than 24 hours."
+      },
+      {
+       "span": {
+        "start": 235,
+        "end": 264
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You are going home to care for yourself.",
+       "source_quote": "Disposition: home, self-care."
+      },
+      {
+       "span": {
+        "start": 1062,
+        "end": 1129
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You must finish all your antibiotics even if you feel better.",
+       "source_quote": "Adherence to the full regimen is required even if symptoms resolve."
+      }
+     ],
+     "medications": [
+      {
+       "span": {
+        "start": 908,
+        "end": 1061
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Amoxicillin-clavulanate",
+       "dose": "875 mg/125 mg, 1 tablet",
+       "schedule": "twice daily with food for 5 additional days",
+       "purpose": null,
+       "source_quote": "Amoxicillin-clavulanate 875 mg/125 mg tablet: administer 1 tablet by mouth twice daily with food for 5 additional days to complete the prescribed course."
+      },
+      {
+       "span": {
+        "start": 1133,
+        "end": 1226
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Acetaminophen",
+       "dose": "500 mg, 2 tablets",
+       "schedule": "every 6 hours as needed",
+       "purpose": "for pyrexia or myalgia",
+       "source_quote": "Acetaminophen 500 mg: take 2 tablets by mouth every 6 hours as needed for pyrexia or myalgia."
+      },
+      {
+       "span": {
+        "start": 1267,
+        "end": 1377
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Guaifenesin",
+       "dose": "600 mg, 1 tablet",
+       "schedule": "every 12 hours as needed",
+       "purpose": "as an expectorant",
+       "source_quote": "Guaifenesin 600 mg extended-release tablet: take 1 tablet by mouth every 12 hours as needed as an expectorant."
+      },
+      {
+       "span": {
+        "start": 1381,
+        "end": 1480
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Albuterol inhaler",
+       "dose": "2 puffs",
+       "schedule": "every 4 to 6 hours as needed",
+       "purpose": "for wheezing or shortness of breath",
+       "source_quote": "Albuterol inhaler: inhale 2 puffs every 4 to 6 hours as needed for wheezing or shortness of breath."
+      }
+     ],
+     "red_flags": [
+      {
+       "span": {
+        "start": 2148,
+        "end": 2389
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your temperature is above 101 degrees F.",
+       "urgency": "call",
+       "source_quote": "Temperature above 101 degrees F is recorded, if your cough is getting worse, if you are unable to tolerate oral medications because of vomiting, or if a new rash or severe diarrhea develops (possible adverse reactions to antibiotic therapy)."
+      },
+      {
+       "span": {
+        "start": 2148,
+        "end": 2389
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your cough is getting worse.",
+       "urgency": "call",
+       "source_quote": "Temperature above 101 degrees F is recorded, if your cough is getting worse, if you are unable to tolerate oral medications because of vomiting, or if a new rash or severe diarrhea develops (possible adverse reactions to antibiotic therapy)."
+      },
+      {
+       "span": {
+        "start": 2148,
+        "end": 2389
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You cannot keep down your medicine because of vomiting.",
+       "urgency": "call",
+       "source_quote": "Temperature above 101 degrees F is recorded, if your cough is getting worse, if you are unable to tolerate oral medications because of vomiting, or if a new rash or severe diarrhea develops (possible adverse reactions to antibiotic therapy)."
+      },
+      {
+       "span": {
+        "start": 2148,
+        "end": 2389
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You get a new rash or severe diarrhea.",
+       "urgency": "call",
+       "source_quote": "Temperature above 101 degrees F is recorded, if your cough is getting worse, if you are unable to tolerate oral medications because of vomiting, or if a new rash or severe diarrhea develops (possible adverse reactions to antibiotic therapy)."
+      },
+      {
+       "span": {
+        "start": 2447,
+        "end": 2555
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have trouble breathing.",
+       "urgency": "er",
+       "source_quote": "Trouble breathing, chest pain, blue or gray lips, confusion or unusual sleepiness, or if you cough up blood."
+      },
+      {
+       "span": {
+        "start": 2447,
+        "end": 2555
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have chest pain.",
+       "urgency": "er",
+       "source_quote": "Trouble breathing, chest pain, blue or gray lips, confusion or unusual sleepiness, or if you cough up blood."
+      },
+      {
+       "span": {
+        "start": 2447,
+        "end": 2555
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your lips are blue or gray.",
+       "urgency": "er",
+       "source_quote": "Trouble breathing, chest pain, blue or gray lips, confusion or unusual sleepiness, or if you cough up blood."
+      },
+      {
+       "span": {
+        "start": 2447,
+        "end": 2555
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You are confused or unusually sleepy.",
+       "urgency": "er",
+       "source_quote": "Trouble breathing, chest pain, blue or gray lips, confusion or unusual sleepiness, or if you cough up blood."
+      },
+      {
+       "span": {
+        "start": 2447,
+        "end": 2555
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You cough up blood.",
+       "urgency": "er",
+       "source_quote": "Trouble breathing, chest pain, blue or gray lips, confusion or unusual sleepiness, or if you cough up blood."
+      }
+     ],
+     "follow_ups": [
+      {
+       "span": {
+        "start": 2567,
+        "end": 2673
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "See Dr. Lindqvist for a primary care visit.",
+       "when": "in 1 week",
+       "source_quote": "Establish primary care follow-up with Dr. Lindqvist in 1 week; contact the clinic at 555-0142 to schedule."
+      },
+      {
+       "span": {
+        "start": 2674,
+        "end": 2776
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "Get a repeat chest X-ray.",
+       "when": "in 6 weeks",
+       "source_quote": "A repeat chest X-ray is indicated in 6 weeks to document radiographic resolution of the consolidation."
+      }
+     ]
+    },
+    "grades": {
+     "original": 11.8,
+     "plain": 5.8
+    },
+    "message": null,
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "3564b8f3b810ef0e9b7c68e86f39499374fbeeb9b8eb2e22f8e74c4276122934",
+    "when do i see my doctor?"
+   ],
+   "data": {
+    "in_document": true,
+    "answer": "You should see your doctor in 1 week. Please call 555-0142 to schedule your appointment with Dr. Lindqvist.",
+    "source_quotes": [
+     "Establish primary care follow-up with Dr. Lindqvist in 1 week; contact the clinic at 555-0142 to schedule."
+    ],
+    "spans": [
+     {
+      "start": 2567,
+      "end": 2673
+     }
+    ],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "3564b8f3b810ef0e9b7c68e86f39499374fbeeb9b8eb2e22f8e74c4276122934",
+    "can i take ibuprofen too?"
+   ],
+   "data": {
+    "in_document": false,
+    "answer": "That isn't in your paperwork — ask your nurse.",
+    "source_quotes": [],
+    "spans": [],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "translate",
+    "es",
+    "000b3cf14ae95dcbe5d842b2b8abf8c8289f737d528cfeeb95e21bf1eb7a560a"
+   ],
+   "data": {
+    "translated": {
+     "summary": [
+      "Fue tratado por neumonía en el lóbulo inferior derecho de su pulmón.",
+      "Recibió antibióticos intravenosos y oxígeno durante dos días.",
+      "Sus niveles de oxígeno son normales y no ha tenido fiebre en más de 24 horas.",
+      "Se va a casa para cuidarse por sí mismo.",
+      "Debe terminar todos sus antibióticos incluso si se siente mejor."
+     ],
+     "medications": [
+      {
+       "name": "Amoxicillin-clavulanate",
+       "dose": "875 mg/125 mg, 1 tablet",
+       "schedule": "dos veces al día con alimentos durante 5 días adicionales",
+       "purpose": null
+      },
+      {
+       "name": "Acetaminophen",
+       "dose": "500 mg, 2 tablets",
+       "schedule": "cada 6 horas según sea necesario",
+       "purpose": "para fiebre o mialgia"
+      },
+      {
+       "name": "Guaifenesin",
+       "dose": "600 mg, 1 tablet",
+       "schedule": "cada 12 horas según sea necesario",
+       "purpose": "como expectorante"
+      },
+      {
+       "name": "Albuterol inhaler",
+       "dose": "2 puffs",
+       "schedule": "cada 4 a 6 horas según sea necesario",
+       "purpose": "para sibilancias o dificultad para respirar"
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "Su temperatura es superior a 101 grados F.",
+       "urgency": "call"
+      },
+      {
+       "text": "Su tos está empeorando.",
+       "urgency": "call"
+      },
+      {
+       "text": "No puede retener su medicamento debido a vómitos.",
+       "urgency": "call"
+      },
+      {
+       "text": "Le aparece un nuevo sarpullido o diarrea severa.",
+       "urgency": "call"
+      },
+      {
+       "text": "Tiene dificultad para respirar.",
+       "urgency": "er"
+      },
+      {
+       "text": "Tiene dolor en el pecho.",
+       "urgency": "er"
+      },
+      {
+       "text": "Sus labios son azules o grises.",
+       "urgency": "er"
+      },
+      {
+       "text": "Está confundido o inusualmente somnoliento.",
+       "urgency": "er"
+      },
+      {
+       "text": "Tose sangre.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "Vea al Dr. Lindqvist para una consulta de atención primaria.",
+       "when": "en 1 semana"
+      },
+      {
+       "what": "Hágase una radiografía de tórax de control.",
+       "when": "en 6 semanas"
+      }
+     ]
+    },
+    "back_translation": {
+     "summary": [
+      "He was treated for pneumonia in the right lower lobe of his lung.",
+      "He received intravenous antibiotics and oxygen for two days.",
+      "His oxygen levels are normal and he has not had a fever in more than 24 hours.",
+      "He is going home to care for himself.",
+      "He must finish all his antibiotics even if he feels better."
+     ],
+     "medications": [
+      {
+       "name": "Amoxicillin-clavulanate",
+       "dose": "875 mg/125 mg, 1 tablet",
+       "schedule": "twice a day with food for 5 additional days",
+       "purpose": null
+      },
+      {
+       "name": "Acetaminophen",
+       "dose": "500 mg, 2 tablets",
+       "schedule": "every 6 hours as needed",
+       "purpose": "for fever or myalgia"
+      },
+      {
+       "name": "Guaifenesin",
+       "dose": "600 mg, 1 tablet",
+       "schedule": "every 12 hours as needed",
+       "purpose": "as an expectorant"
+      },
+      {
+       "name": "Albuterol inhaler",
+       "dose": "2 puffs",
+       "schedule": "every 4 to 6 hours as needed",
+       "purpose": "for wheezing or difficulty breathing"
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "His temperature is above 101 degrees F.",
+       "urgency": "call"
+      },
+      {
+       "text": "His cough is getting worse.",
+       "urgency": "call"
+      },
+      {
+       "text": "He cannot keep his medication down due to vomiting.",
+       "urgency": "call"
+      },
+      {
+       "text": "He develops a new rash or severe diarrhea.",
+       "urgency": "call"
+      },
+      {
+       "text": "He has difficulty breathing.",
+       "urgency": "er"
+      },
+      {
+       "text": "He has chest pain.",
+       "urgency": "er"
+      },
+      {
+       "text": "His lips are blue or gray.",
+       "urgency": "er"
+      },
+      {
+       "text": "He is confused or unusually drowsy.",
+       "urgency": "er"
+      },
+      {
+       "text": "He coughs up blood.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "See Dr. Lindqvist for a primary care consultation.",
+       "when": "in 1 week"
+      },
+      {
+       "what": "Get a follow-up chest X-ray.",
+       "when": "in 6 weeks"
+      }
+     ]
+    },
+    "warnings": [],
+    "disclaimer": "Machine-generated translation, not reviewed by a person. Confirm with your care team or an interpreter.",
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "analyze",
+    "f4faeecd1c46fecc70e2afb165910f4cd905d84d29bc5b0a4c9fc3dec5ece4de"
+   ],
+   "data": {
+    "analysis": {
+     "is_discharge_doc": true,
+     "summary": [
+      {
+       "span": {
+        "start": 264,
+        "end": 369
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You were in the hospital for heart failure that got worse. You had fluid build-up in your body.",
+       "source_quote": "Principal diagnosis: Acute on chronic systolic congestive heart failure (decompensated), volume overload."
+      },
+      {
+       "span": {
+        "start": 484,
+        "end": 569
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You got medicine to help your body get rid of extra fluid. You lost about 6 pounds.",
+       "source_quote": "Intravenous loop diuretic therapy resulted in net diuresis of approximately 6 pounds."
+      },
+      {
+       "span": {
+        "start": 219,
+        "end": 263
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You are going home. You need to check your weight every day and limit salt and fluids.",
+       "source_quote": "Disposition: home with outpatient follow-up."
+      },
+      {
+       "span": {
+        "start": 1185,
+        "end": 1220
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You must stop taking ibuprofen and naproxen. These drugs can make your heart failure worse.",
+       "source_quote": "Discontinue ibuprofen and naproxen."
+      },
+      {
+       "span": {
+        "start": 2168,
+        "end": 2269
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have a doctor's appointment in 7 days. Bring your weight log and medicine bottles.",
+       "source_quote": "Heart failure clinic with Dr. Okafor within 7 days; bring your weight log and all medication bottles."
+      }
+     ],
+     "medications": [
+      {
+       "span": {
+        "start": 760,
+        "end": 838
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Furosemide",
+       "dose": "40 mg, 1 tablet",
+       "schedule": "every morning",
+       "purpose": null,
+       "source_quote": "Furosemide 40 mg tablet: take 1 tablet by mouth every morning (loop diuretic)."
+      },
+      {
+       "span": {
+        "start": 842,
+        "end": 901
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Lisinopril",
+       "dose": "10 mg, 1 tablet",
+       "schedule": "once daily",
+       "purpose": null,
+       "source_quote": "Lisinopril 10 mg tablet: take 1 tablet by mouth once daily."
+      },
+      {
+       "span": {
+        "start": 980,
+        "end": 1027
+       },
+       "match": "exact",
+       "flags": [
+        "dose_missing"
+       ],
+       "name": "Metoprolol succinate",
+       "dose": null,
+       "schedule": "once daily",
+       "purpose": null,
+       "source_quote": "Metoprolol succinate: take by mouth once daily."
+      },
+      {
+       "span": {
+        "start": 1093,
+        "end": 1164
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Potassium chloride",
+       "dose": "20 mEq, 1 tablet",
+       "schedule": "once daily with food",
+       "purpose": null,
+       "source_quote": "Potassium chloride 20 mEq: take 1 tablet by mouth once daily with food."
+      }
+     ],
+     "red_flags": [
+      {
+       "span": {
+        "start": 1723,
+        "end": 1785
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Call your care team if you gain more than 3 pounds in one day or 5 pounds in one week.",
+       "urgency": "call",
+       "source_quote": "You gain more than 3 pounds in one day or 5 pounds in one week"
+      },
+      {
+       "span": {
+        "start": 1787,
+        "end": 1841
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Call your care team if your legs, ankles, or belly get more swollen than usual.",
+       "urgency": "call",
+       "source_quote": "if your legs, ankles, or abdomen swell more than usual"
+      },
+      {
+       "span": {
+        "start": 1843,
+        "end": 1876
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Call your care team if you need more pillows to sleep.",
+       "urgency": "call",
+       "source_quote": "if you need more pillows to sleep"
+      },
+      {
+       "span": {
+        "start": 1878,
+        "end": 1910
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Call your care team if you feel dizzy when you stand up.",
+       "urgency": "call",
+       "source_quote": "if you feel dizzy when you stand"
+      },
+      {
+       "span": {
+        "start": 1915,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Call your care team if you have a dry cough that does not go away.",
+       "urgency": "call",
+       "source_quote": "if you have a dry cough that will not go away"
+      },
+      {
+       "span": {
+        "start": 2019,
+        "end": 2041
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Go to the ER or call 911 if you have chest pain or pressure.",
+       "urgency": "er",
+       "source_quote": "Chest pain or pressure"
+      },
+      {
+       "span": {
+        "start": 2043,
+        "end": 2077
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Go to the ER or call 911 if you have severe shortness of breath while resting.",
+       "urgency": "er",
+       "source_quote": "severe shortness of breath at rest"
+      },
+      {
+       "span": {
+        "start": 2079,
+        "end": 2087
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Go to the ER or call 911 if you faint.",
+       "urgency": "er",
+       "source_quote": "fainting"
+      },
+      {
+       "span": {
+        "start": 2089,
+        "end": 2120
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Go to the ER or call 911 if your heart beats fast or irregularly.",
+       "urgency": "er",
+       "source_quote": "rapid or irregular palpitations"
+      },
+      {
+       "span": {
+        "start": 2125,
+        "end": 2155
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Go to the ER or call 911 if you cough up pink, foamy spit.",
+       "urgency": "er",
+       "source_quote": "coughing up pink, foamy sputum"
+      }
+     ],
+     "follow_ups": [
+      {
+       "span": {
+        "start": 2168,
+        "end": 2269
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "Visit the heart failure clinic with Dr. Okafor. Bring your weight log and all medication bottles.",
+       "when": "within 7 days",
+       "source_quote": "Heart failure clinic with Dr. Okafor within 7 days; bring your weight log and all medication bottles."
+      },
+      {
+       "span": {
+        "start": 2270,
+        "end": 2377
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "Get blood tests to check kidney function and potassium levels.",
+       "when": "at the clinic visit",
+       "source_quote": "Blood tests (basic metabolic panel for kidney function and potassium) will be obtained at the clinic visit."
+      },
+      {
+       "span": {
+        "start": 2378,
+        "end": 2475
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "Visit cardiology to check heart function and medicine plan.",
+       "when": "in 4 weeks",
+       "source_quote": "Cardiology visit in 4 weeks for reassessment of ejection fraction and guideline-directed therapy."
+      }
+     ]
+    },
+    "grades": {
+     "original": 10.3,
+     "plain": 3.4
+    },
+    "message": null,
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "f4faeecd1c46fecc70e2afb165910f4cd905d84d29bc5b0a4c9fc3dec5ece4de",
+    "when do i see my doctor?"
+   ],
+   "data": {
+    "in_document": true,
+    "answer": "You should see Dr. Okafor at the heart failure clinic within 7 days. You also have a cardiology visit in 4 weeks.",
+    "source_quotes": [
+     "Heart failure clinic with Dr. Okafor within 7 days; bring your weight log and all medication bottles.",
+     "Cardiology visit in 4 weeks for reassessment of ejection fraction and guideline-directed therapy."
+    ],
+    "spans": [
+     {
+      "start": 2168,
+      "end": 2269
+     },
+     {
+      "start": 2378,
+      "end": 2475
+     }
+    ],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "f4faeecd1c46fecc70e2afb165910f4cd905d84d29bc5b0a4c9fc3dec5ece4de",
+    "can i take ibuprofen too?"
+   ],
+   "data": {
+    "in_document": true,
+    "answer": "No, you should not take ibuprofen. The instructions say to stop taking it because it can cause your body to hold onto salt and water, which can make your heart failure worse.",
+    "source_quotes": [
+     "Discontinue ibuprofen and naproxen.",
+     "Nonsteroidal anti-inflammatory drugs promote sodium and fluid retention and may precipitate decompensation."
+    ],
+    "spans": [
+     {
+      "start": 1185,
+      "end": 1220
+     },
+     {
+      "start": 1221,
+      "end": 1328
+     }
+    ],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "translate",
+    "es",
+    "c0494917dc95c5d705ccd8e00ed8867c2f0492ec82df6f803f06d4a50570b0c9"
+   ],
+   "data": {
+    "translated": {
+     "summary": [
+      "Estuvo en el hospital por insuficiencia cardíaca que empeoró. Tuvo acumulación de líquidos en su cuerpo.",
+      "Recibió medicamentos para ayudar a su cuerpo a eliminar el exceso de líquido. Perdió aproximadamente 6 libras.",
+      "Está de regreso a casa. Necesita pesar su peso todos los días y limitar la sal y los líquidos.",
+      "Debe dejar de tomar ibuprofeno y naproxeno. Estos medicamentos pueden empeorar su insuficiencia cardíaca.",
+      "Tiene una cita con el médico en 7 días. Traiga su registro de peso y los frascos de sus medicamentos."
+     ],
+     "medications": [
+      {
+       "name": "Furosemide",
+       "dose": "40 mg, 1 tablet",
+       "schedule": "every morning",
+       "purpose": null
+      },
+      {
+       "name": "Lisinopril",
+       "dose": "10 mg, 1 tablet",
+       "schedule": "once daily",
+       "purpose": null
+      },
+      {
+       "name": "Metoprolol succinate",
+       "dose": null,
+       "schedule": "once daily",
+       "purpose": null
+      },
+      {
+       "name": "Potassium chloride",
+       "dose": "20 mEq, 1 tablet",
+       "schedule": "once daily with food",
+       "purpose": null
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "Llame a su equipo de atención si gana más de 3 libras en un día o 5 libras en una semana.",
+       "urgency": "call"
+      },
+      {
+       "text": "Llame a su equipo de atención si sus piernas, tobillos o abdomen se hinchan más de lo habitual.",
+       "urgency": "call"
+      },
+      {
+       "text": "Llame a su equipo de atención si necesita más almohadas para dormir.",
+       "urgency": "call"
+      },
+      {
+       "text": "Llame a su equipo de atención si siente mareo al ponerse de pie.",
+       "urgency": "call"
+      },
+      {
+       "text": "Llame a su equipo de atención si tiene una tos seca que no desaparece.",
+       "urgency": "call"
+      },
+      {
+       "text": "Vaya a la sala de emergencias o llame al 911 si tiene dolor o presión en el pecho.",
+       "urgency": "er"
+      },
+      {
+       "text": "Vaya a la sala de emergencias o llame al 911 si tiene dificultad grave para respirar en reposo.",
+       "urgency": "er"
+      },
+      {
+       "text": "Vaya a la sala de emergencias o llame al 911 si se desmaya.",
+       "urgency": "er"
+      },
+      {
+       "text": "Vaya a la sala de emergencias o llame al 911 si su corazón late rápido o de forma irregular.",
+       "urgency": "er"
+      },
+      {
+       "text": "Vaya a la sala de emergencias o llame al 911 si tose saliva rosada y espumosa.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "Visite la clínica de insuficiencia cardíaca con el Dr. Okafor. Traiga su registro de peso y todos los frascos de medicamentos.",
+       "when": "within 7 days"
+      },
+      {
+       "what": "Hágase análisis de sangre para verificar la función renal y los niveles de potasio.",
+       "when": "at the clinic visit"
+      },
+      {
+       "what": "Visite cardiología para verificar la función cardíaca y el plan de medicamentos.",
+       "when": "in 4 weeks"
+      }
+     ]
+    },
+    "back_translation": {
+     "summary": [
+      "Was hospitalized for worsening heart failure. Had fluid buildup in the body.",
+      "Received medications to help the body remove excess fluid. Lost approximately 6 pounds.",
+      "Is back home. Needs to weigh themselves every day and limit salt and fluids.",
+      "Must stop taking ibuprofen and naproxen. These medications can worsen heart failure.",
+      "Has a doctor's appointment in 7 days. Bring the weight log and medication bottles."
+     ],
+     "medications": [
+      {
+       "name": "Furosemide",
+       "dose": "40 mg, 1 tablet",
+       "schedule": "every morning",
+       "purpose": null
+      },
+      {
+       "name": "Lisinopril",
+       "dose": "10 mg, 1 tablet",
+       "schedule": "once daily",
+       "purpose": null
+      },
+      {
+       "name": "Metoprolol succinate",
+       "dose": null,
+       "schedule": "once daily",
+       "purpose": null
+      },
+      {
+       "name": "Potassium chloride",
+       "dose": "20 mEq, 1 tablet",
+       "schedule": "once daily with food",
+       "purpose": null
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "Call your care team if you gain more than 3 pounds in a day or 5 pounds in a week.",
+       "urgency": "call"
+      },
+      {
+       "text": "Call your care team if your legs, ankles, or abdomen swell more than usual.",
+       "urgency": "call"
+      },
+      {
+       "text": "Call your care team if you need more pillows to sleep.",
+       "urgency": "call"
+      },
+      {
+       "text": "Call your care team if you feel dizzy when standing up.",
+       "urgency": "call"
+      },
+      {
+       "text": "Call your care team if you have a dry cough that does not go away.",
+       "urgency": "call"
+      },
+      {
+       "text": "Go to the emergency room or call 911 if you have chest pain or pressure.",
+       "urgency": "er"
+      },
+      {
+       "text": "Go to the emergency room or call 911 if you have severe difficulty breathing at rest.",
+       "urgency": "er"
+      },
+      {
+       "text": "Go to the emergency room or call 911 if you faint.",
+       "urgency": "er"
+      },
+      {
+       "text": "Go to the emergency room or call 911 if your heart beats fast or irregularly.",
+       "urgency": "er"
+      },
+      {
+       "text": "Go to the emergency room or call 911 if you cough up pink, frothy saliva.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "Visit the heart failure clinic with Dr. Okafor. Bring your weight log and all medication bottles.",
+       "when": "within 7 days"
+      },
+      {
+       "what": "Get blood tests to check kidney function and potassium levels.",
+       "when": "at the clinic visit"
+      },
+      {
+       "what": "Visit cardiology to check heart function and the medication plan.",
+       "when": "in 4 weeks"
+      }
+     ]
+    },
+    "warnings": [],
+    "disclaimer": "Machine-generated translation, not reviewed by a person. Confirm with your care team or an interpreter.",
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "analyze",
+    "f1a41203ae2fd3f53c2c544beeccae327a85b95d707ce94efcfd1d4f839eef59"
+   ],
+   "data": {
+    "analysis": {
+     "is_discharge_doc": true,
+     "summary": [
+      {
+       "span": {
+        "start": 271,
+        "end": 356
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You had surgery to remove your appendix because it was inflamed.",
+       "source_quote": "Laparoscopic appendectomy for acute uncomplicated appendicitis, three-port technique."
+      },
+      {
+       "span": {
+        "start": 387,
+        "end": 419
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "The surgery went well with no complications and you are going home.",
+       "source_quote": "No intraoperative complications."
+      },
+      {
+       "span": {
+        "start": 745,
+        "end": 766
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Take your new medicines as listed to help with pain and prevent constipation.",
+       "source_quote": "DISCHARGE MEDICATIONS"
+      },
+      {
+       "span": {
+        "start": 1379,
+        "end": 1452
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Keep your wounds dry and do not soak them for two weeks.",
+       "source_quote": "Do not submerge the incisions in a bathtub, hot tub, or pool for 2 weeks."
+      },
+      {
+       "span": {
+        "start": 1586,
+        "end": 1632
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Do not lift heavy things for four weeks and walk every day.",
+       "source_quote": "No lifting greater than 10 pounds for 4 weeks."
+      }
+     ],
+     "medications": [
+      {
+       "span": {
+        "start": 769,
+        "end": 883
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Oxycodone",
+       "dose": "5 mg, 1 tablet",
+       "schedule": "by mouth every 6 hours only if you have severe pain that ibuprofen does not control",
+       "purpose": "for severe pain",
+       "source_quote": "Oxycodone 5 mg: take 1 tablet by mouth every 6 hours only if you have severe pain that ibuprofen does not control."
+      },
+      {
+       "span": {
+        "start": 997,
+        "end": 1079
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Ibuprofen",
+       "dose": "400 mg, 1 tablet",
+       "schedule": "by mouth every 8 hours with food for up to 5 days",
+       "purpose": null,
+       "source_quote": "Ibuprofen 400 mg: take 1 tablet by mouth every 8 hours with food for up to 5 days."
+      },
+      {
+       "span": {
+        "start": 1082,
+        "end": 1210
+       },
+       "match": "exact",
+       "flags": [],
+       "name": "Docusate",
+       "dose": "100 mg, 1 capsule",
+       "schedule": "by mouth twice a day while taking oxycodone",
+       "purpose": "as prophylaxis against opioid-induced constipation",
+       "source_quote": "Docusate 100 mg: take 1 capsule by mouth twice a day while taking oxycodone, as prophylaxis against opioid-induced constipation."
+      }
+     ],
+     "red_flags": [
+      {
+       "span": {
+        "start": 1787,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have a fever of 100.4 degrees F or higher.",
+       "urgency": "call",
+       "source_quote": "You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves."
+      },
+      {
+       "span": {
+        "start": 1787,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have redness or swelling around an incision.",
+       "urgency": "call",
+       "source_quote": "You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves."
+      },
+      {
+       "span": {
+        "start": 1787,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have pus draining from the wound.",
+       "urgency": "call",
+       "source_quote": "You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves."
+      },
+      {
+       "span": {
+        "start": 1787,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You are vomiting and cannot stop.",
+       "urgency": "call",
+       "source_quote": "You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves."
+      },
+      {
+       "span": {
+        "start": 1787,
+        "end": 1960
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your pain gets worse instead of better.",
+       "urgency": "call",
+       "source_quote": "You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves."
+      },
+      {
+       "span": {
+        "start": 1961,
+        "end": 2018
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have not had a bowel movement in 3 days.",
+       "urgency": "call",
+       "source_quote": "Also call if you have not had a bowel movement in 3 days."
+      },
+      {
+       "span": {
+        "start": 2060,
+        "end": 2195
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have severe belly pain.",
+       "urgency": "er",
+       "source_quote": "Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis)."
+      },
+      {
+       "span": {
+        "start": 2060,
+        "end": 2195
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "Your belly is hard and swollen.",
+       "urgency": "er",
+       "source_quote": "Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis)."
+      },
+      {
+       "span": {
+        "start": 2060,
+        "end": 2195
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have chest pain.",
+       "urgency": "er",
+       "source_quote": "Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis)."
+      },
+      {
+       "span": {
+        "start": 2060,
+        "end": 2195
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have trouble breathing.",
+       "urgency": "er",
+       "source_quote": "Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis)."
+      },
+      {
+       "span": {
+        "start": 2060,
+        "end": 2195
+       },
+       "match": "exact",
+       "flags": [],
+       "text": "You have a painful swollen calf.",
+       "urgency": "er",
+       "source_quote": "Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis)."
+      }
+     ],
+     "follow_ups": [
+      {
+       "span": {
+        "start": 2207,
+        "end": 2284
+       },
+       "match": "exact",
+       "flags": [],
+       "what": "Postoperative visit with Dr. Marchetti",
+       "when": "in 2 weeks",
+       "source_quote": "Postoperative visit with Dr. Marchetti in 2 weeks; call 555-0177 to schedule."
+      }
+     ]
+    },
+    "grades": {
+     "original": 10.3,
+     "plain": 5.5
+    },
+    "message": null,
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "f1a41203ae2fd3f53c2c544beeccae327a85b95d707ce94efcfd1d4f839eef59",
+    "when do i see my doctor?"
+   ],
+   "data": {
+    "in_document": true,
+    "answer": "You will see your doctor in 2 weeks. Please call 555-0177 to schedule your appointment.",
+    "source_quotes": [
+     "Postoperative visit with Dr. Marchetti in 2 weeks; call 555-0177 to schedule."
+    ],
+    "spans": [
+     {
+      "start": 2207,
+      "end": 2284
+     }
+    ],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "ask",
+    "f1a41203ae2fd3f53c2c544beeccae327a85b95d707ce94efcfd1d4f839eef59",
+    "can i take ibuprofen too?"
+   ],
+   "data": {
+    "in_document": true,
+    "answer": "Yes, you can take ibuprofen. Take 1 tablet by mouth every 8 hours with food for up to 5 days.",
+    "source_quotes": [
+     "Ibuprofen 400 mg: take 1 tablet by mouth every 8 hours with food for up to 5 days."
+    ],
+    "spans": [
+     {
+      "start": 997,
+      "end": 1079
+     }
+    ],
+    "cached": false
+   }
+  },
+  {
+   "key": [
+    "translate",
+    "es",
+    "18459a5cd5aa767ab46dcfc2705bc4b271838990f862d0b8c569893ccc4afb7a"
+   ],
+   "data": {
+    "translated": {
+     "summary": [
+      "Se le realizó una cirugía para extirpar el apéndice porque estaba inflamado.",
+      "La cirugía transcurrió bien, sin complicaciones, y se va a casa.",
+      "Tome sus nuevos medicamentos según se indica para ayudar con el dolor y prevenir el estreñimiento.",
+      "Mantenga sus heridas secas y no las sumerja durante dos semanas.",
+      "No levante objetos pesados durante cuatro semanas y camine todos los días."
+     ],
+     "medications": [
+      {
+       "name": "Oxycodone",
+       "dose": "5 mg, 1 tablet",
+       "schedule": "por vía oral cada 6 horas solo si tiene dolor severo que el ibuprofeno no controla",
+       "purpose": "para dolor severo"
+      },
+      {
+       "name": "Ibuprofen",
+       "dose": "400 mg, 1 tablet",
+       "schedule": "por vía oral cada 8 horas con alimentos durante un máximo de 5 días",
+       "purpose": null
+      },
+      {
+       "name": "Docusate",
+       "dose": "100 mg, 1 capsule",
+       "schedule": "por vía oral dos veces al día mientras tome oxycodone",
+       "purpose": "como profilaxis contra el estreñimiento inducido por opioides"
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "Tiene una fiebre de 100.4 grados F o superior.",
+       "urgency": "call"
+      },
+      {
+       "text": "Tiene enrojecimiento o hinchazón alrededor de una incisión.",
+       "urgency": "call"
+      },
+      {
+       "text": "Tiene pus drenando de la herida.",
+       "urgency": "call"
+      },
+      {
+       "text": "Está vomitando y no puede detenerse.",
+       "urgency": "call"
+      },
+      {
+       "text": "Su dolor empeora en lugar de mejorar.",
+       "urgency": "call"
+      },
+      {
+       "text": "No ha tenido una evacuación intestinal en 3 días.",
+       "urgency": "call"
+      },
+      {
+       "text": "Tiene dolor abdominal severo.",
+       "urgency": "er"
+      },
+      {
+       "text": "Su abdomen está duro e hinchado.",
+       "urgency": "er"
+      },
+      {
+       "text": "Tiene dolor en el pecho.",
+       "urgency": "er"
+      },
+      {
+       "text": "Tiene dificultad para respirar.",
+       "urgency": "er"
+      },
+      {
+       "text": "Tiene una pantorrilla hinchada y dolorosa.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "Visita postoperatoria con el Dr. Marchetti",
+       "when": "en 2 semanas"
+      }
+     ]
+    },
+    "back_translation": {
+     "summary": [
+      "He had surgery to remove his appendix because it was inflamed.",
+      "The surgery went well, without complications, and he is going home.",
+      "Take your new medications as directed to help with pain and prevent constipation.",
+      "Keep your wounds dry and do not submerge them for two weeks.",
+      "Do not lift heavy objects for four weeks and walk every day."
+     ],
+     "medications": [
+      {
+       "name": "Oxycodone",
+       "dose": "5 mg, 1 tablet",
+       "schedule": "orally every 6 hours only if you have severe pain that ibuprofen does not control",
+       "purpose": "for severe pain"
+      },
+      {
+       "name": "Ibuprofen",
+       "dose": "400 mg, 1 tablet",
+       "schedule": "orally every 8 hours with food for a maximum of 5 days",
+       "purpose": null
+      },
+      {
+       "name": "Docusate",
+       "dose": "100 mg, 1 capsule",
+       "schedule": "orally twice a day while taking oxycodone",
+       "purpose": "as prophylaxis against opioid-induced constipation"
+      }
+     ],
+     "red_flags": [
+      {
+       "text": "You have a fever of 100.4 degrees F or higher.",
+       "urgency": "call"
+      },
+      {
+       "text": "You have redness or swelling around an incision.",
+       "urgency": "call"
+      },
+      {
+       "text": "You have pus draining from the wound.",
+       "urgency": "call"
+      },
+      {
+       "text": "You are vomiting and cannot stop.",
+       "urgency": "call"
+      },
+      {
+       "text": "Your pain is getting worse instead of better.",
+       "urgency": "call"
+      },
+      {
+       "text": "You have not had a bowel movement in 3 days.",
+       "urgency": "call"
+      },
+      {
+       "text": "You have severe abdominal pain.",
+       "urgency": "er"
+      },
+      {
+       "text": "Your abdomen is hard and swollen.",
+       "urgency": "er"
+      },
+      {
+       "text": "You have chest pain.",
+       "urgency": "er"
+      },
+      {
+       "text": "You have difficulty breathing.",
+       "urgency": "er"
+      },
+      {
+       "text": "You have a swollen and painful calf.",
+       "urgency": "er"
+      }
+     ],
+     "follow_ups": [
+      {
+       "what": "Postoperative visit with Dr. Marchetti",
+       "when": "in 2 weeks"
+      }
+     ]
+    },
+    "warnings": [],
+    "disclaimer": "Machine-generated translation, not reviewed by a person. Confirm with your care team or an interpreter.",
+    "cached": false
+   }
+  }
+ ]
+}

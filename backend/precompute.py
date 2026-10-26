@@ -12,10 +12,15 @@ from datetime import date
 from . import config, llm, service
 
 
+PAUSE = 25
+
+
 def retry(fn, label: str):
     for attempt in range(8):
         try:
-            return fn()
+            out = fn()
+            time.sleep(PAUSE)  # stay under the per-minute token limit
+            return out
         except llm.LLMError as e:
             wait = 30 * (attempt + 1)
             print(f"  {label}: {type(e).__name__}, waiting {wait}s", flush=True)
