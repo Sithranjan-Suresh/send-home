@@ -63,6 +63,7 @@ class AnalyzeResponse(BaseModel):
     analysis: Analysis
     grades: Grades
     message: Optional[str] = None
+    cached: bool = False
 
 
 class AskRequest(BaseModel):
@@ -75,6 +76,7 @@ class AskResponse(BaseModel):
     answer: Optional[str] = None
     source_quotes: list[str] = Field(default_factory=list)
     spans: list[Span] = Field(default_factory=list)
+    cached: bool = False
 
 
 class TranslateRequest(BaseModel):
@@ -87,6 +89,7 @@ class TranslateResponse(BaseModel):
     back_translation: dict
     warnings: list[str] = Field(default_factory=list)
     disclaimer: str
+    cached: bool = False
 
 
 class ErrorResponse(BaseModel):

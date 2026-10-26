@@ -99,6 +99,7 @@ def messages():
         "quote_not_found": config.QUOTE_NOT_FOUND_MSG,
         "number_mismatch": config.NUMBER_MISMATCH_MSG,
         "max_chars": config.MAX_CHARS,
+        "cache_meta": service.CACHE_META,
     }
 
 

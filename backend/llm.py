@@ -31,21 +31,31 @@ _TRANSIENT = {408, 429, 500, 502, 503, 504}
 
 
 def call_llm(system: str, user: str, json_mode: bool = True) -> str:
-    """Send one chat completion; retry once on transient failure."""
+    """Send one chat completion. Falls back to other models if the main one is out of daily tokens."""
     if config.LLM_MOCK:
         from . import mock_llm
 
         return mock_llm.respond(system, user)
     config.require_key()
+    last: Exception | None = None
+    for model in [config.LLM_MODEL, *config.LLM_FALLBACK_MODELS]:
+        try:
+            return _call_model(model, system, user, json_mode)
+        except LLMRateLimited as e:  # daily/minute budget gone for this model: try the next one
+            last = e
+    raise last or LLMError("no model available")
+
+
+def _call_model(model: str, system: str, user: str, json_mode: bool) -> str:
     payload = {
-        "model": config.LLM_MODEL,
+        "model": model,
         "temperature": 0,
         "messages": [
             {"role": "system", "content": system},
             {"role": "user", "content": user},
         ],
     }
-    if config.LLM_MODEL.startswith("openai/gpt-oss"):
+    if model.startswith("openai/gpt-oss"):
         payload["reasoning_effort"] = "low"  # fewer hidden tokens: Groq free tier is token-limited
     if json_mode:
         payload["response_format"] = {"type": "json_object"}
@@ -56,16 +66,19 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
     for attempt in range(3):
         try:
             r = httpx.post(url, json=payload, headers=headers, timeout=config.LLM_TIMEOUT_S)
+            if r.status_code == 429:
+                try:
+                    wait = float(r.headers.get("retry-after", "10"))
+                except ValueError:
+                    wait = 10.0
+                if wait > 30:  # a daily limit, not worth waiting for
+                    raise LLMRateLimited("rate limited")
+                last = LLMRateLimited("rate limited")
+                if attempt < 2:
+                    time.sleep(wait + 1)
+                continue
             if r.status_code in _TRANSIENT:
                 last = LLMError(f"provider status {r.status_code}")
-                if r.status_code == 429:  # rate limited: wait as long as the provider asks
-                    try:
-                        wait = min(float(r.headers.get("retry-after", "10")), 30.0)
-                    except ValueError:
-                        wait = 10.0
-                    if attempt < 2:
-                        time.sleep(wait + 1)
-                    continue
             elif r.status_code >= 400:
                 raise LLMError(f"provider status {r.status_code}")
             else:
@@ -78,8 +91,6 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
             raise LLMError("unexpected provider response")
         if attempt < 1:
             time.sleep(1)
-    if isinstance(last, LLMError) and "429" in str(last):
-        raise LLMRateLimited("rate limited")
     raise last or LLMError("unknown provider failure")
 
 

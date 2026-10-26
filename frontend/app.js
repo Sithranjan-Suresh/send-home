@@ -222,6 +222,13 @@ function sourceBtn(item) {
     h("span", { class: cls }, label));
 }
 
+function cacheNote() {
+  if (!state.cached) return null;
+  const m = MSG.cache_meta || {};
+  const when = [m.model, m.date].filter(Boolean).join(", ");
+  return h("p", { class: "cache-note" }, "Saved result from a real run of this pipeline on the sample" + (when ? ` (${when})` : "") + ". Paste your own text to run it live.");
+}
+
 function allItems(a) {
   return [...a.summary, ...a.medications, ...a.red_flags, ...a.follow_ups];
 }
@@ -272,6 +279,7 @@ function renderResults() {
   pane.replaceChildren(
     h("div", { class: "row between", style: "margin-top:16px" }, grade),
     verifyBar(a),
+    cacheNote(),
     summary, medsCard, flagsCard, fuCard, translateCard(), askCard());
 }
 
@@ -473,7 +481,7 @@ async function loadSample(id) {
 }
 
 function resetResults() {
-  state.analysis = null; state.grades = null; state.message = null; state.translation = null;
+  state.analysis = null; state.grades = null; state.cached = false; state.message = null; state.translation = null;
   state.language = "en"; state.qa = []; state.highlights = [];
 }
 
@@ -495,6 +503,7 @@ async function onAnalyze() {
     if (r.analysis && r.analysis.is_discharge_doc) {
       state.analysis = r.analysis;
       state.grades = r.grades;
+      state.cached = !!r.cached;
       state.enter = true;
     }
   } catch (err) {
@@ -521,7 +530,7 @@ function onReset() {
     if (r.ok) {
       const m = await r.json();
       MSG = { ...MSG, refusal: m.refusal, dose_missing: m.dose_missing, quote_not_found: m.quote_not_found,
-              number_mismatch: m.number_mismatch, max_chars: m.max_chars };
+              number_mismatch: m.number_mismatch, max_chars: m.max_chars, cache_meta: m.cache_meta || {} };
     }
   } catch (_) { /* keep built-in defaults */ }
   render();

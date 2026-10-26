@@ -41,6 +41,30 @@ def _load_samples() -> None:
 
 _load_samples()
 
+PRECOMPUTED = Path(__file__).resolve().parent.parent / "samples" / "precomputed.json"
+CACHE_META: dict = {}
+_MODELS = {"analyze": AnalyzeResponse, "ask": AskResponse, "translate": TranslateResponse}
+
+
+def load_precomputed() -> None:
+    """Saved outputs of real runs on the built-in samples (no user text; see README)."""
+    try:
+        blob = json.loads(PRECOMPUTED.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return
+    CACHE_META.update(blob.get("meta", {}))
+    for e in blob.get("entries", []):
+        key = tuple(e["key"])
+        _cache[key] = _MODELS[key[0]](**e["data"])
+        if key[0] == "translate":
+            _translate_ok.add(key[2])
+
+
+def save_precomputed(meta: dict) -> None:
+    entries = [{"key": list(k), "data": v.model_dump()} for k, v in _cache.items()]
+    PRECOMPUTED.write_text(json.dumps({"meta": meta, "entries": entries}, ensure_ascii=False, indent=1),
+                           encoding="utf-8")
+
 
 class UserError(Exception):
     """An error with a message that is safe to show the user."""
@@ -93,7 +117,9 @@ def analyze(text: str) -> AnalyzeResponse:
     key = ("analyze", _sha(text))
     is_sample = key[1] in _SAMPLES
     if is_sample and key in _cache:
-        return _cache[key].model_copy(deep=True)
+        hit = _cache[key].model_copy(deep=True)
+        hit.cached = True
+        return hit
     obj = _llm_json(prompts.ANALYZE_SYSTEM, prompts.analyze_user(text),
                     validate=lambda o: Analysis(**o))
     analysis = Analysis(**obj)
@@ -122,7 +148,9 @@ def ask(text: str, question: str) -> AskResponse:
     key = ("ask", _sha(text), question.lower())
     is_sample = key[1] in _SAMPLES
     if is_sample and key in _cache:
-        return _cache[key].model_copy(deep=True)
+        hit = _cache[key].model_copy(deep=True)
+        hit.cached = True
+        return hit
     resp = _ask_uncached(text, question)
     if is_sample and len(_cache) < 300:
         _cache[key] = resp.model_copy(deep=True)
@@ -185,7 +213,9 @@ def translate(analysis: Analysis, language: str = "es") -> TranslateResponse:
     tkey = ("translate", language, _sha(json.dumps(source, sort_keys=True)))
     cacheable = tkey[2] in _translate_ok
     if cacheable and tkey in _cache:
-        return _cache[tkey].model_copy(deep=True)
+        hit = _cache[tkey].model_copy(deep=True)
+        hit.cached = True
+        return hit
 
     def shaped(o):
         if not _same_shape(source, o):
@@ -231,3 +261,6 @@ def warm_samples(pause: float = 22.0) -> None:
             except Exception:
                 pass
             time.sleep(pause)
+
+
+load_precomputed()
