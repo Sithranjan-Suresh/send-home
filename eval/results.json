@@ -5,8 +5,8 @@
       "valid": true,
       "misses": [],
       "grades": {
-        "original": 6.9,
-        "plain": 8.8
+        "original": 11.8,
+        "plain": 8.2
       },
       "meds_expected": 4,
       "meds_found": 4,
@@ -15,7 +15,7 @@
       "rf_found": 9,
       "fu_expected": 2,
       "fu_found": 2,
-      "items": 13,
+      "items": 20,
       "flagged": 0,
       "quote_not_found": 0,
       "dose_missing_flags": 0
@@ -25,8 +25,8 @@
       "valid": true,
       "misses": [],
       "grades": {
-        "original": 4.7,
-        "plain": 6.9
+        "original": 10.3,
+        "plain": 7.7
       },
       "meds_expected": 4,
       "meds_found": 4,
@@ -35,9 +35,9 @@
       "rf_found": 9,
       "fu_expected": 3,
       "fu_found": 3,
-      "items": 14,
-      "flagged": 2,
-      "quote_not_found": 1,
+      "items": 22,
+      "flagged": 1,
+      "quote_not_found": 0,
       "dose_missing_flags": 1
     },
     {
@@ -45,8 +45,8 @@
       "valid": true,
       "misses": [],
       "grades": {
-        "original": 5.2,
-        "plain": 8.2
+        "original": 10.3,
+        "plain": 8.3
       },
       "meds_expected": 3,
       "meds_found": 3,
@@ -55,7 +55,7 @@
       "rf_found": 7,
       "fu_expected": 1,
       "fu_found": 1,
-      "items": 11,
+      "items": 18,
       "flagged": 0,
       "quote_not_found": 0,
       "dose_missing_flags": 0
@@ -63,22 +63,19 @@
     {
       "sheet": "eval_4.txt",
       "valid": true,
-      "misses": [
-        "dose mismatch for metformin: expected ['500'], got '1 tablet'",
-        "dose mismatch for ciprofloxacin: expected ['500'], got '1 tablet'"
-      ],
+      "misses": [],
       "grades": {
-        "original": 6.1,
-        "plain": 6.9
+        "original": 10.8,
+        "plain": 9.3
       },
       "meds_expected": 4,
       "meds_found": 4,
-      "dose_correct": 2,
+      "dose_correct": 4,
       "rf_expected": 7,
       "rf_found": 7,
       "fu_expected": 3,
       "fu_found": 3,
-      "items": 14,
+      "items": 19,
       "flagged": 0,
       "quote_not_found": 0,
       "dose_missing_flags": 0
@@ -88,7 +85,7 @@
       "valid": true,
       "misses": [],
       "grades": {
-        "original": 5.6,
+        "original": 10.0,
         "plain": 7.1
       },
       "meds_expected": 4,
@@ -98,100 +95,11 @@
       "rf_found": 5,
       "fu_expected": 3,
       "fu_found": 3,
-      "items": 14,
+      "items": 17,
       "flagged": 1,
       "quote_not_found": 0,
       "dose_missing_flags": 1
     }
   ],
-  "qa": {
-    "correct": 12,
-    "total": 12,
-    "rows": [
-      {
-        "sheet": "pneumonia.txt",
-        "q": "How long do I keep taking the antibiotic?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "pneumonia.txt",
-        "q": "When do I need another chest X-ray?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "heart_failure.txt",
-        "q": "How much fluid can I drink each day?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "heart_failure.txt",
-        "q": "When should I weigh myself?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "appendectomy.txt",
-        "q": "When can I shower?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "appendectomy.txt",
-        "q": "How much can I lift?",
-        "in_document": true,
-        "got_in_document": true,
-        "ok": true
-      },
-      {
-        "sheet": "pneumonia.txt",
-        "q": "Can I take ibuprofen too?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      },
-      {
-        "sheet": "pneumonia.txt",
-        "q": "Is it safe to fly on a plane next week?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      },
-      {
-        "sheet": "heart_failure.txt",
-        "q": "What is my blood type?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      },
-      {
-        "sheet": "heart_failure.txt",
-        "q": "Can I take melatonin to help me sleep?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      },
-      {
-        "sheet": "appendectomy.txt",
-        "q": "What is my insurance deductible?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      },
-      {
-        "sheet": "appendectomy.txt",
-        "q": "Can I take melatonin to help me sleep?",
-        "in_document": false,
-        "got_in_document": false,
-        "ok": true
-      }
-    ]
-  }
+  "qa": null
 }

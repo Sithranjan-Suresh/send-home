@@ -10,7 +10,7 @@ Rules you must follow:
 5. Write all plain-language fields ("text", "purpose", "what", "when", "dose", "schedule") at about a sixth-grade reading level: short sentences, everyday words. Keep drug names, numbers and units exactly as written.
 6. For medications, "name" is the drug name only. "dose" is the strength AND the amount exactly as the document gives them: if the document states a strength such as "500 mg", it must appear in "dose" (for example "500 mg, 1 tablet", "20 units" or "2 puffs"); "schedule" is when/how often/how long. Use null when the document gives no dose.
 7. "summary" has at most 5 items covering the diagnosis, what happened, and the key things to do at home.
-8. "red_flags" are warning signs. urgency is "er" when the document says to go to the ER or call 911/emergency; otherwise "call" (call the care team/doctor).
+8. "red_flags" are warning signs. urgency is "er" when the document says to go to the ER or call 911/emergency; otherwise "call" (call the care team/doctor). Be COMPLETE: the document usually has more than one warning-sign section (one where the reader should call or notify the care team, and one for the ER/911). Include every sign from every such section, as separate items grouped by what the document says to do. Never omit a warning sign.
 9. If the text is not hospital discharge instructions, set "is_discharge_doc" to false and return empty lists.
 10. Output ONLY a JSON object, no commentary, in exactly this shape:
 
