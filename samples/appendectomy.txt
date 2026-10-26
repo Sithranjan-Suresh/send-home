@@ -1,29 +1,30 @@
 SYNTHETIC SAMPLE - NOT A REAL PATIENT RECORD
-MAPLE HILL SURGICAL HOSPITAL - DISCHARGE INSTRUCTIONS
+MAPLE HILL SURGICAL HOSPITAL - GENERAL SURGERY SERVICE
+PATIENT DISCHARGE INSTRUCTIONS AND POSTOPERATIVE CARE SUMMARY
 
-Patient: Sample Patient C.  Admission date: 09/20.  Discharge date: 09/21.
-Procedure: Laparoscopic appendectomy (removal of the appendix through 3 small cuts in the belly).
+Patient: Sample Patient C.  Admission: 09/20.  Discharge: 09/21.  Disposition: home, ambulatory.
+Procedure: Laparoscopic appendectomy for acute uncomplicated appendicitis, three-port technique. Estimated blood loss minimal. No intraoperative complications.
 
-ABOUT YOUR SURGERY
-Your appendix was inflamed but had not burst. The surgery went well and there were no complications. You have 3 small cuts closed with skin glue and tiny strips.
+POSTOPERATIVE COURSE
+Pathology is pending. The inflamed appendix was removed intact without perforation or abscess. Port sites are closed with subcuticular sutures, topical skin adhesive, and adhesive strips. The patient tolerated a regular diet, is voiding spontaneously, and has adequate pain control on oral analgesics.
 
-PAIN AND OTHER MEDICINES
-- Oxycodone 5 mg: take 1 tablet by mouth every 6 hours only if you have severe pain that ibuprofen does not control. Do not drive or drink alcohol while taking it. You have 8 tablets.
+DISCHARGE MEDICATIONS
+- Oxycodone 5 mg: take 1 tablet by mouth every 6 hours only if you have severe pain that ibuprofen does not control. Do not operate a vehicle or consume alcohol while taking this opioid analgesic. Quantity dispensed: 8 tablets.
 - Ibuprofen 400 mg: take 1 tablet by mouth every 8 hours with food for up to 5 days.
-- Docusate 100 mg: take 1 capsule by mouth twice a day while you are taking oxycodone, to prevent constipation.
-Continue your other home medicines as before.
+- Docusate 100 mg: take 1 capsule by mouth twice a day while taking oxycodone, as prophylaxis against opioid-induced constipation.
+Resume all other home medications as previously prescribed.
 
 WOUND CARE
-You may shower after 48 hours. Let soap and water run over the cuts and pat them dry. Do not soak in a bathtub, hot tub, or pool for 2 weeks. Do not pull off the skin glue or the strips; they will fall off on their own in 1 to 2 weeks.
+You may shower after 48 hours, allowing soap and water to run over the incisions, then pat dry. Do not submerge the incisions in a bathtub, hot tub, or pool for 2 weeks. Do not pull off the skin adhesive or the adhesive strips; they will detach spontaneously within 1 to 2 weeks.
 
-ACTIVITY
-Do not lift anything heavier than 10 pounds for 4 weeks. Walk every day. You can go back to desk work in about 1 week. Avoid sports until your surgeon says it is okay.
+ACTIVITY RESTRICTIONS
+No lifting greater than 10 pounds for 4 weeks. Ambulate daily. Sedentary work may resume in approximately 1 week. Refrain from athletic activity until cleared by your surgeon.
 
-CALL YOUR SURGEON IF
-You have a fever of 100.4 degrees F or higher, redness or swelling around a cut, drainage that looks like pus, vomiting that does not stop, or pain that gets worse instead of better. Call also if you have not had a bowel movement in 3 days.
+CONTACT YOUR SURGEON IF
+You develop a fever of 100.4 degrees F or higher, redness or swelling around an incision, purulent drainage, intractable vomiting, or pain that worsens rather than improves. Also call if you have not had a bowel movement in 3 days.
 
-GO TO THE EMERGENCY ROOM IF
-You have severe belly pain, a hard swollen belly, chest pain, trouble breathing, or a painful swollen calf.
+PROCEED TO THE EMERGENCY DEPARTMENT FOR
+Severe belly pain, a rigid distended abdomen, chest pain, trouble breathing, or a painful swollen calf (possible deep vein thrombosis).
 
 FOLLOW-UP
-Post-operative visit with Dr. Marchetti in 2 weeks. Call 555-0177 to schedule.
+Postoperative visit with Dr. Marchetti in 2 weeks; call 555-0177 to schedule. Pathology results will be reviewed at that visit.

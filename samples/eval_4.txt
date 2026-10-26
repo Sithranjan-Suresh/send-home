@@ -1,29 +1,29 @@
 SYNTHETIC SAMPLE - NOT A REAL PATIENT RECORD
-EASTGATE COMMUNITY HOSPITAL - DISCHARGE INSTRUCTIONS
+EASTGATE COMMUNITY HOSPITAL - ENDOCRINOLOGY / HOSPITAL MEDICINE
+PATIENT DISCHARGE INSTRUCTIONS AND TRANSITION-OF-CARE SUMMARY
 
-Patient: Sample Patient D.  Admitted: 01/09.  Discharged: 01/12.
-Diagnosis: Type 2 diabetes with high blood sugar (hyperglycemia) and a urinary tract infection.
+Patient: Sample Patient D.  Admission: 01/09.  Discharge: 01/12.  Disposition: home.
+Principal diagnosis: Type 2 diabetes mellitus with hyperglycemia without ketoacidosis. Secondary diagnosis: acute uncomplicated cystitis (urinary tract infection).
 
-WHAT HAPPENED
-Your blood sugar was very high when you arrived and you had a urine infection. We gave you fluids, insulin, and antibiotics. Your sugar is now in a safer range.
+HOSPITAL COURSE
+The patient presented with marked hyperglycemia, polyuria, and dysuria. Urinalysis was consistent with a urinary tract infection. Management consisted of intravenous crystalloid resuscitation, a subcutaneous insulin regimen, and empiric antimicrobial therapy. Glycemic control has improved to an acceptable range for outpatient management.
 
-MEDICATIONS
-Metformin 500 mg tablet: take 1 tablet by mouth twice daily with meals.
-Glargine insulin: inject 20 units under the skin once daily at bedtime. Check your blood sugar before each dose. If your sugar is below 100, call the clinic before taking your insulin.
-Ciprofloxacin 500 mg tablet: take 1 tablet by mouth every 12 hours for 3 days. Do not take it within 2 hours of antacids or dairy products.
+DISCHARGE MEDICATIONS
+Metformin 500 mg tablet: take 1 tablet by mouth twice daily with meals, including on days when oral intake is reduced.
+Glargine insulin: inject 20 units subcutaneously once daily at bedtime. Perform a fingerstick glucose before each dose. If your sugar is below 100, call the clinic before taking your insulin.
+Ciprofloxacin 500 mg tablet: take 1 tablet by mouth every 12 hours for 3 days. Do not take it within 2 hours of antacids or dairy products, which impair absorption.
 Glucose tablets: chew 4 tablets if your blood sugar is below 70.
-Take Metformin 500 mg tablet twice daily with meals even on days you eat less.
 
-HOME CARE
-Check your blood sugar 4 times a day: before meals and at bedtime. Write down every result. Drink water throughout the day. Choose foods with fewer sugars and starches, and eat meals at regular times.
+SELF-MANAGEMENT
+Perform self-monitoring of blood glucose 4 times a day: before meals and at bedtime. Record every result in a log. Maintain adequate hydration throughout the day. Adhere to a carbohydrate-consistent diet with reduced simple sugars and starches, and eat meals at regular intervals.
 
-CALL YOUR DOCTOR IF
+CONTACT YOUR PRIMARY CARE PROVIDER IF
 Your blood sugar is over 300 two times in a row, you have burning with urination that is not better in 2 days, or you have a fever over 100.4 degrees F.
 
-GO TO THE EMERGENCY ROOM OR CALL 911 IF
-You are very sleepy or confused, you have fruity-smelling breath with nausea and vomiting, you pass out, or your blood sugar stays below 70 after you have treated it twice.
+ACTIVATE 911 OR PROCEED TO THE EMERGENCY DEPARTMENT IF
+You are very sleepy or confused, you have fruity-smelling breath with nausea and vomiting, you pass out, or your blood sugar stays below 70 after you have treated it twice (severe hypoglycemia).
 
 APPOINTMENTS
 Primary care in 5 days for a blood sugar log review.
 Diabetes education class: the clinic will call you with a date.
-Eye exam within 3 months.
+Dilated eye exam within 3 months.

@@ -8,7 +8,7 @@ Rules you must follow:
 3. Every item must include "source_quote": ONE sentence or phrase copied CHARACTER-FOR-CHARACTER from the document (same spelling, numbers, punctuation). Do not paraphrase, shorten with "...", or combine sentences in a quote.
 4. If a field is not stated in the document, use null. NEVER infer or guess a dose, schedule, purpose or timing.
 5. Write all plain-language fields ("text", "purpose", "what", "when", "dose", "schedule") at about a sixth-grade reading level: short sentences, everyday words. Keep drug names, numbers and units exactly as written.
-6. For medications, "name" is the drug name only. "dose" is the strength and amount exactly as the document gives them (for example "500 mg, 2 tablets" or "2 puffs"); "schedule" is when/how often/how long. Use null when the document gives no dose.
+6. For medications, "name" is the drug name only. "dose" is the strength AND the amount exactly as the document gives them: if the document states a strength such as "500 mg", it must appear in "dose" (for example "500 mg, 1 tablet", "20 units" or "2 puffs"); "schedule" is when/how often/how long. Use null when the document gives no dose.
 7. "summary" has at most 5 items covering the diagnosis, what happened, and the key things to do at home.
 8. "red_flags" are warning signs. urgency is "er" when the document says to go to the ER or call 911/emergency; otherwise "call" (call the care team/doctor).
 9. If the text is not hospital discharge instructions, set "is_discharge_doc" to false and return empty lists.

@@ -1,29 +1,30 @@
 SYNTHETIC SAMPLE - NOT A REAL PATIENT RECORD
-LAKESIDE MEDICAL CENTER - DISCHARGE INSTRUCTIONS
+LAKESIDE MEDICAL CENTER - CARDIOLOGY SERVICE
+PATIENT DISCHARGE INSTRUCTIONS AND TRANSITION-OF-CARE SUMMARY
 
-Patient: Sample Patient B.  Admitted: 06/11.  Discharged: 06/15.
-Diagnosis: Congestive heart failure flare (fluid build-up because the heart is not pumping as strongly as it should).
+Patient: Sample Patient B.  Admission: 06/11.  Discharge: 06/15.  Disposition: home with outpatient follow-up.
+Principal diagnosis: Acute on chronic systolic congestive heart failure (decompensated), volume overload.
 
-WHAT HAPPENED
-You came in with swelling in both legs, weight gain, and trouble breathing when lying flat. You were given a water pill through the IV and about 6 pounds of extra fluid was removed. Your heart tests showed no new heart attack.
+HOSPITAL COURSE
+The patient presented with bilateral lower extremity edema, interval weight gain, and orthopnea. Intravenous loop diuretic therapy resulted in net diuresis of approximately 6 pounds. Serial troponin assays and electrocardiography showed no evidence of acute myocardial infarction. The patient is euvolemic and hemodynamically stable at discharge.
 
-YOUR MEDICINES
-1. Furosemide 40 mg tablet: take 1 tablet by mouth every morning. This is a water pill.
-2. Lisinopril 10 mg tablet: take 1 tablet by mouth once daily. Your doctor will check your kidneys and potassium at your first visit.
-3. Metoprolol succinate: take by mouth once daily. Your doctor will tell you the dose at your first clinic visit.
+DISCHARGE MEDICATIONS
+1. Furosemide 40 mg tablet: take 1 tablet by mouth every morning (loop diuretic).
+2. Lisinopril 10 mg tablet: take 1 tablet by mouth once daily. Renal function and serum potassium will be reassessed at your first visit.
+3. Metoprolol succinate: take by mouth once daily. Dose titration will be determined at your first clinic visit.
 4. Potassium chloride 20 mEq: take 1 tablet by mouth once daily with food.
-CHANGES: Stop taking ibuprofen and naproxen. These can make your body hold on to water.
+MEDICATION CHANGES: Discontinue ibuprofen and naproxen. Nonsteroidal anti-inflammatory drugs promote sodium and fluid retention and may precipitate decompensation.
 
-DAILY SELF-CARE
-Weigh yourself every morning after you use the bathroom and before you eat. Write the number down. Eat less than 2,000 mg of sodium each day. Limit fluids to 64 ounces (about 8 cups) per day. Raise your legs when sitting. Walk a little each day and rest when you feel tired.
+SELF-MONITORING AND DIETARY RESTRICTIONS
+Obtain a daily weight each morning after voiding and before breakfast, and record it in a log. Adhere to a sodium restriction of less than 2,000 mg per day. Fluid intake is limited to 64 ounces (approximately 8 cups) per day. Elevate the lower extremities when seated. Engage in light ambulation daily and rest when fatigued.
 
-CALL YOUR CARE TEAM IF
-You gain more than 3 pounds in one day or 5 pounds in one week. Call if your legs, ankles, or belly swell more than usual, if you need more pillows to sleep, if you feel dizzy when you stand, or if you have a dry cough that will not go away.
+NOTIFY YOUR CARE TEAM IF
+You gain more than 3 pounds in one day or 5 pounds in one week; if your legs, ankles, or abdomen swell more than usual; if you need more pillows to sleep; if you feel dizzy when you stand; or if you have a dry cough that will not go away.
 
-CALL 911 OR GO TO THE EMERGENCY ROOM IF
-You have chest pain or pressure, severe shortness of breath at rest, fainting, a very fast or irregular heartbeat, or you cough up pink, foamy mucus.
+ACTIVATE 911 OR PROCEED TO THE EMERGENCY DEPARTMENT FOR
+Chest pain or pressure, severe shortness of breath at rest, fainting, rapid or irregular palpitations, or coughing up pink, foamy sputum.
 
 FOLLOW-UP
-Heart failure clinic with Dr. Okafor within 7 days. Bring your weight log and all of your pill bottles.
-Blood tests (kidney function and potassium) at the clinic visit.
-Cardiology visit in 4 weeks.
+Heart failure clinic with Dr. Okafor within 7 days; bring your weight log and all medication bottles.
+Blood tests (basic metabolic panel for kidney function and potassium) will be obtained at the clinic visit.
+Cardiology visit in 4 weeks for reassessment of ejection fraction and guideline-directed therapy.
