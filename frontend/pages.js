@@ -21,8 +21,10 @@ function currentRoute() {
 
 function renderNav(route) {
   const nav = $("nav");
-  nav.replaceChildren(h("div", { class: "wrap nav-inner" },
-    ROUTES.map((r) => h("a", { href: r.hash, "aria-current": r.id === route ? "page" : null, class: r.id === route ? "active" : "" }, r.label))));
+  nav.replaceChildren(h("div", { class: "nav-pill" },
+    h("a", { class: "brand", href: "#/", "aria-label": "Sendhome home" }, h("span", { class: "brand-mark", "aria-hidden": "true" }), h("span", {}, "Sendhome")),
+    h("div", { class: "nav-links" },
+      ROUTES.map((r) => h("a", { href: r.hash, "aria-current": r.id === route ? "page" : null, class: r.id === route ? "active" : "" }, r.label)))));
 }
 
 function hasPlan() {

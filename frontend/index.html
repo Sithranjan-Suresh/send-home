@@ -5,22 +5,89 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sendhome &mdash; a discharge plan you can check</title>
   <meta name="description" content="Turn a hospital discharge sheet into a plain-language plan where every line links back to the original sentence.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Cpath d='M12 32 32 14l20 18v18H38V38H26v12H12z' fill='white'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#0a1b33">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230a1b33'/%3E%3Crect x='14' y='22' width='36' height='11' rx='3' fill='%23ffe94d'/%3E%3Crect x='14' y='38' width='24' height='4' rx='2' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
-  <header class="top">
-    <div class="wrap">
-      <h1 class="brand"><span class="logo" aria-hidden="true">&#8962;</span> Sendhome</h1>
-      <p class="tag">A discharge plan you can check.</p>
-    </div>
-  </header>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+
   <div class="banner" role="note">
-    <div class="wrap"><strong>Synthetic samples only</strong> &middot; Not medical advice &middot; Don't paste real patient information.</div>
+    <span class="dot" aria-hidden="true"></span>
+    <strong>Synthetic samples only</strong><span class="sep">&middot;</span>Not medical advice<span class="sep">&middot;</span>Don't paste real patient information
   </div>
 
   <nav id="nav" class="nav" aria-label="Pages"></nav>
+
+  <header id="hero" class="hero wrap">
+    <div class="hero-copy">
+      <p class="eyebrow">For the day you leave the hospital</p>
+      <h1 class="display">Paperwork you can <span class="marker"><span>check.</span></span></h1>
+      <p class="hero-sub">Sendhome turns a discharge sheet into a plain-language plan. Every line links to the sentence it came from. Anything it can't verify says so, instead of guessing.</p>
+      <div class="hero-cta">
+        <button id="cta-try" class="primary big">Try a sample sheet <span aria-hidden="true">&rarr;</span></button>
+        <a class="ghost" href="#/report">See how we scored</a>
+      </div>
+      <ul class="chips-row" aria-label="Promises">
+        <li>Nothing is stored</li>
+        <li>Every line has a source</li>
+        <li>Missing stays missing</li>
+      </ul>
+    </div>
+
+    <figure class="hero-art" id="hero-art" aria-label="Animated example: a medicine line on a discharge sheet is highlighted and linked to its plain-language version; a second line with no dose is flagged instead of guessed.">
+      <svg viewBox="0 0 580 440" role="img" aria-hidden="true" class="demo">
+        <defs>
+          <filter id="lift" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="18" stdDeviation="16" flood-color="#0a1b33" flood-opacity=".28"/></filter>
+          <filter id="lift2" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#0a1b33" flood-opacity=".22"/></filter>
+        </defs>
+        <g class="sheet" filter="url(#lift)">
+          <rect x="8" y="14" width="318" height="408" rx="14" fill="#fff"/>
+          <text x="28" y="48" class="d-mono d-head">RIVERBEND GENERAL HOSPITAL</text>
+          <text x="28" y="64" class="d-mono d-sub">DISCHARGE INSTRUCTIONS</text>
+          <rect x="28" y="78" width="278" height="1.5" fill="#dfe5ee"/>
+          <g class="d-faint"><rect x="28" y="96" width="210" height="6" rx="3"/><rect x="28" y="110" width="250" height="6" rx="3"/></g>
+          <rect class="hl hl-a" x="22" y="134" width="290" height="58" rx="5"/>
+          <text x="28" y="152" class="d-mono d-line">1. Amoxicillin-clavulanate 875 mg/</text>
+          <text x="28" y="170" class="d-mono d-line">125 mg tablet: take 1 tablet by mouth</text>
+          <text x="28" y="188" class="d-mono d-line">twice daily with food for 5 more days.</text>
+          <g class="d-faint"><rect x="28" y="214" width="236" height="6" rx="3"/><rect x="28" y="228" width="180" height="6" rx="3"/></g>
+          <rect class="hl hl-b" x="22" y="258" width="290" height="58" rx="5"/>
+          <text x="28" y="276" class="d-mono d-line">3. Metoprolol succinate: take by</text>
+          <text x="28" y="294" class="d-mono d-line">mouth once daily. Dose titration will</text>
+          <text x="28" y="312" class="d-mono d-line">be determined at your first visit.</text>
+          <g class="d-faint"><rect x="28" y="338" width="250" height="6" rx="3"/><rect x="28" y="352" width="200" height="6" rx="3"/><rect x="28" y="366" width="226" height="6" rx="3"/><rect x="28" y="380" width="120" height="6" rx="3"/></g>
+        </g>
+
+        <path class="thread thread-a" pathLength="1" d="M314 163 C 352 163, 352 128, 392 128"/>
+        <path class="thread thread-b" pathLength="1" d="M314 287 C 352 287, 352 318, 392 318"/>
+
+        <g class="bubble bubble-a" filter="url(#lift2)">
+          <rect x="392" y="72" width="180" height="112" rx="16" fill="#0a1b33"/>
+          <text x="410" y="100" class="d-title">Amoxicillin-clavulanate</text>
+          <text x="410" y="122" class="d-body">1 tablet, twice a day,</text>
+          <text x="410" y="140" class="d-body">with food, 5 more days</text>
+          <rect x="410" y="152" width="124" height="22" rx="11" fill="#12a594"/>
+          <text x="422" y="167" class="d-chip">&#10003; Matches the sheet</text>
+        </g>
+        <g class="bubble bubble-b" filter="url(#lift2)">
+          <rect x="392" y="262" width="180" height="112" rx="16" fill="#fff6d6" stroke="#e4b73a" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="410" y="290" class="d-title d-dark">Metoprolol succinate</text>
+          <text x="410" y="312" class="d-body d-dark">Dose not listed &mdash;</text>
+          <text x="410" y="330" class="d-body d-dark">confirm with your nurse.</text>
+          <rect x="410" y="342" width="108" height="22" rx="11" fill="#e4b73a"/>
+          <text x="422" y="357" class="d-chip d-dark">&#9888; Not guessed</text>
+        </g>
+      </svg>
+    </figure>
+  </header>
+
+  <section id="stats" class="stats wrap" hidden aria-label="Self-check results"></section>
 
   <main id="main" class="wrap">
     <div id="page" hidden></div>
@@ -30,18 +97,38 @@
       <div id="result-pane"></div>
       <aside id="source-pane" aria-labelledby="src-h"></aside>
     </div>
+
+    <section id="trust" class="trust" aria-label="Why you can trust it">
+      <article class="tile reveal">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><rect x="6" y="12" width="64" height="9" rx="3" class="t-faint"/><rect x="6" y="28" width="64" height="12" rx="3" class="t-hl"/><rect x="6" y="48" width="48" height="9" rx="3" class="t-faint"/><path d="M72 34 C 88 34, 88 22, 104 22" class="t-thread"/><circle cx="108" cy="22" r="6" class="t-dot"/></svg>
+        <h3>Every line has a source</h3>
+        <p>Click any line and the exact sentence in your paperwork lights up. If we can't find it, we tell you.</p>
+      </article>
+      <article class="tile reveal">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><rect x="6" y="14" width="108" height="42" rx="10" class="t-empty"/><text x="60" y="40" text-anchor="middle" class="t-text">dose not listed</text></svg>
+        <h3>Missing stays missing</h3>
+        <p>No dose in the sheet means no dose on screen. We flag it for your nurse and never fill the blank.</p>
+      </article>
+      <article class="tile reveal">
+        <svg viewBox="0 0 120 70" aria-hidden="true"><rect x="10" y="10" width="70" height="30" rx="10" class="t-bubble"/><path d="M26 40 l-6 12 l16 -12" class="t-bubble"/><path d="M92 18 L112 58 M112 18 L92 58" class="t-x"/></svg>
+        <h3>Questions stay on the page</h3>
+        <p>Ask anything. Answers come only from your paperwork, and the rest gets a plain &ldquo;ask your nurse.&rdquo;</p>
+      </article>
+    </section>
   </main>
 
-  <footer class="wrap foot">
-    <details id="how">
-      <summary>How we check</summary>
-      <ul>
-        <li>The AI must copy a word-for-word quote from your paperwork for every line. Code (not the AI) looks for that quote in the original.</li>
-        <li>If a quote can't be found, or a dose is missing, the line is flagged &mdash; nothing is guessed.</li>
-        <li>Questions are answered only from your paperwork. If the sheet doesn't say, the app says so.</li>
-      </ul>
-    </details>
-    <p>Sendhome is a hackathon prototype built on synthetic documents. Nothing you type is stored. It does not replace your care team.</p>
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <details id="how">
+        <summary>How we check</summary>
+        <ul>
+          <li>The AI must copy a word-for-word quote from your paperwork for every line. Code, not the AI, looks for that quote in the original.</li>
+          <li>If a quote can't be found, or a dose is missing, the line is flagged. Nothing is guessed.</li>
+          <li>Questions are answered only from your paperwork. If the sheet doesn't say, the app says so.</li>
+        </ul>
+      </details>
+      <p>Sendhome is a hackathon prototype built on synthetic documents. Nothing you type is stored. It does not replace your care team.</p>
+    </div>
   </footer>
   <script src="pages.js"></script>
   <script src="app.js"></script>

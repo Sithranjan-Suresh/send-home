@@ -74,27 +74,59 @@ async function api(path, body) {
 }
 
 /* ---------- render ---------- */
+let enterTimer = null;
+
 function render() {
   const route = currentRoute();
   renderNav(route);
   renderInput();
   renderStatus();
   const onPlan = route === "plan";
+  const has = !!(state.analysis && state.analysis.is_discharge_doc);
+  document.body.classList.toggle("is-analyzing", state.loading === "analyze");
+  document.body.classList.toggle("has-plan", has);
   $("input-pane").hidden = !onPlan;
   $("page").hidden = onPlan;
-  const has = !!(state.analysis && state.analysis.is_discharge_doc);
+  // The pitch (hero, scores, trust tiles) gives way to the results once there is a plan.
+  for (const id of ["hero", "trust"]) $(id).hidden = !(onPlan && !has);
+  $("stats").hidden = !(onPlan && !has && state.statsReady);
   $("results").hidden = !(onPlan && has);
   if (!onPlan) {
+    const page = $("page");
+    page.classList.remove("page-in");
+    void page.offsetWidth; // restart the entrance animation
+    page.classList.add("page-in");
     renderPage(route);
     return;
   }
   if (has) {
+    if (state.enter) {
+      document.body.classList.add("animate-in");
+      clearTimeout(enterTimer);
+      enterTimer = setTimeout(() => { document.body.classList.remove("animate-in"); state.enter = false; }, 1600);
+    }
     renderResults();
     renderSource();
+    countUp();
     if (state.scrollToMark) {
       state.scrollToMark = false;
       scrollToMark();
     }
+  }
+}
+
+/* Reading-grade numbers count up the first time a plan appears. */
+function countUp() {
+  if (!state.enter || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for (const el of document.querySelectorAll("[data-count]")) {
+    const to = parseFloat(el.dataset.count);
+    const t0 = performance.now();
+    const tick = (now) => {
+      const p = Math.min((now - t0) / 1100, 1);
+      el.textContent = (to * (1 - Math.pow(1 - p, 3))).toFixed(1);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
   }
 }
 
@@ -117,11 +149,11 @@ function renderInput() {
       },
     });
     pane.replaceChildren(
-      h("div", { class: "card" },
+      h("div", { class: "card bench c-sheet" },
         h("h2", { id: "in-h" }, "Your discharge sheet"),
         h("p", { class: "lead" }, "Pick a synthetic sample or paste text. We'll turn it into a plan and show where every line came from."),
         h("div", { class: "row", id: "sample-row" }),
-        h("div", { style: "margin:12px 0" }, ta),
+        h("div", { class: "paper-wrap" }, ta),
         h("div", { class: "row between" },
           h("span", { id: "count", class: "count" }),
           h("div", { class: "row" },
@@ -188,22 +220,22 @@ function renderResults() {
 
   const grade = h("div", { class: "grade", title: "Approximate Flesch–Kincaid grade, computed locally" },
     "Reading level (approx.): ",
-    g.original != null ? h("span", {}, "original grade ", h("b", {}, String(g.original))) : null,
-    g.plain != null ? h("span", {}, " → plain grade ", h("b", {}, String(g.plain))) : null);
+    g.original != null ? h("span", {}, "original grade ", h("b", { "data-count": String(g.original) }, String(g.original))) : null,
+    g.plain != null ? h("span", {}, h("span", { class: "arrow" }, " → "), "plain grade ", h("b", { "data-count": String(g.plain) }, String(g.plain))) : null);
 
-  const summary = h("section", { class: "card" }, h("h2", {}, "In plain words"), readAloudButton(a),
+  const summary = h("section", { class: "card c-summary" }, h("h2", {}, "In plain words"), readAloudButton(a),
     a.summary.map((s) => h("div", { class: "item" }, h("p", {}, s.text), flagBadges(s), sourceBtn(s))));
 
-  const medsCard = h("section", { class: "card" }, h("h2", {}, "Your medicines"),
+  const medsCard = h("section", { class: "card c-meds" }, h("h2", {}, "Your medicines"),
     a.medications.length ? medTable(a.medications) : h("p", { class: "lead" }, "No medicines were found in this sheet."));
 
   const call = a.red_flags.filter((r) => r.urgency !== "er");
   const er = a.red_flags.filter((r) => r.urgency === "er");
-  const flagsCard = h("section", { class: "card" }, h("h2", {}, "When to get help"),
+  const flagsCard = h("section", { class: "card c-help" }, h("h2", {}, "When to get help"),
     redGroup("call", "☎ Call your care team if…", call),
     redGroup("er", "✚ Go to the ER or call 911 if…", er));
 
-  const fuCard = h("section", { class: "card" }, h("h2", {}, "Follow-up visits"),
+  const fuCard = h("section", { class: "card c-visit" }, h("h2", {}, "Follow-up visits"),
     a.follow_ups.length
       ? a.follow_ups.map((f) => h("div", { class: "item" },
           h("p", {}, h("b", {}, f.what), " — ",
@@ -285,7 +317,7 @@ function renderSource() {
     pos = s.end;
   }
   body.append(document.createTextNode(text.slice(pos)));
-  pane.replaceChildren(h("div", { class: "card" },
+  pane.replaceChildren(h("div", { class: "card c-sheet" },
     h("h2", { id: "src-h" }, "Your original paperwork"),
     h("p", { class: "small" }, "Click “Show source” on any line to see where it came from."),
     body));
@@ -313,7 +345,7 @@ function translateCard() {
   const sel = h("select", { id: "lang", "aria-label": "Language", onchange: onLanguage },
     h("option", { value: "en" }, "English"), h("option", { value: "es" }, "Español (Spanish)"));
   sel.value = state.language;
-  const card = h("section", { class: "card" }, h("h2", {}, "Another language"),
+  const card = h("section", { class: "card c-lang" }, h("h2", {}, "Another language"),
     h("div", { class: "row" }, h("label", { for: "lang" }, "Show this plan in: "), sel));
   if (state.loading === "translate") {
     card.append(h("div", { class: "msg info" }, h("span", { class: "spinner" }), "Translating, then translating back to English so you can check…"));
@@ -365,7 +397,7 @@ function askCard() {
   const input = h("input", { type: "text", id: "q", maxlength: "300", "aria-label": "Your question", placeholder: "Ask about your paperwork…",
     onkeydown: (e) => { if (e.key === "Enter") onAsk(e.target.value); } });
   const busy = state.loading === "ask";
-  const card = h("section", { class: "card" }, h("h2", {}, "Ask a question"),
+  const card = h("section", { class: "card c-ask" }, h("h2", {}, "Ask a question"),
     h("p", { class: "lead" }, "Answers come only from your paperwork. If it isn't there, we'll say so."),
     h("div", { class: "row" }, input,
       h("button", { class: "primary", disabled: busy, onclick: () => onAsk($("q").value) }, busy ? "Checking…" : "Ask")),
@@ -436,6 +468,7 @@ async function onAnalyze() {
     if (r.analysis && r.analysis.is_discharge_doc) {
       state.analysis = r.analysis;
       state.grades = r.grades;
+      state.enter = true;
     }
   } catch (err) {
     state.error = err.message;
@@ -465,4 +498,59 @@ function onReset() {
     }
   } catch (_) { /* keep built-in defaults */ }
   render();
+  initHero();
+  loadStats();
 })();
+
+/* ---------- hero behaviour ---------- */
+function initHero() {
+  $("cta-try").addEventListener("click", () => {
+    $("input-pane").scrollIntoView({ behavior: "smooth", block: "start" });
+    const first = document.querySelector("#sample-row button");
+    if (first) setTimeout(() => first.focus({ preventScroll: true }), 450);
+  });
+  const art = $("hero-art");
+  if (!matchMedia("(prefers-reduced-motion: reduce)").matches && matchMedia("(pointer: fine)").matches) {
+    art.addEventListener("pointermove", (e) => {
+      const r = art.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      art.style.setProperty("--mx", (x * 100) + "%");
+      art.style.setProperty("--my", (y * 100) + "%");
+      art.firstElementChild.style.setProperty("--ry", ((x - 0.5) * 7) + "deg");
+      art.firstElementChild.style.setProperty("--rx", ((0.5 - y) * 5) + "deg");
+    });
+    art.addEventListener("pointerleave", () => {
+      art.firstElementChild.style.setProperty("--ry", "0deg");
+      art.firstElementChild.style.setProperty("--rx", "0deg");
+    });
+  }
+  // Fade-in-on-scroll for the trust tiles.
+  const tiles = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const en of entries) if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+    }, { threshold: 0.2 });
+    tiles.forEach((t) => io.observe(t));
+  } else {
+    tiles.forEach((t) => t.classList.add("in"));
+  }
+}
+
+/* Real self-check numbers from the committed evaluation files (see the Report card). */
+async function loadStats() {
+  try {
+    const r = await fetch("/api/report");
+    if (!r.ok) return;
+    const rep = await r.json();
+    const run = rep.final && rep.final[0];
+    if (!run || !run.total) return;
+    const stat = (num, label) => h("div", { class: "stat" }, h("b", {}, num), h("span", {}, label));
+    $("stats").replaceChildren(
+      stat(run.total.medicines, "medicines found"),
+      stat(run.total.doses, "doses correct"),
+      stat(run.total.red_flags, "warning-sign keywords"),
+      h("div", { class: "more" }, "Self-check on 5 synthetic sheets, misses included.", h("a", { href: "#/report" }, "See the report card")));
+    state.statsReady = true;
+    render();
+  } catch (_) { /* the ribbon is optional */ }
+}
