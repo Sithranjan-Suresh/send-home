@@ -95,3 +95,12 @@ class TranslateResponse(BaseModel):
 class ErrorResponse(BaseModel):
     error: str
     message: str
+
+
+class VerifyRequest(BaseModel):
+    text: str
+    analysis: Analysis
+
+
+class VerifyResponse(BaseModel):
+    analysis: Analysis

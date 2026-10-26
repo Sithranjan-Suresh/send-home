@@ -144,9 +144,10 @@ def _check(text: str, item) -> None:
 
 
 def verify_analysis(text: str, analysis: Analysis) -> Analysis:
-    """Attach span and flags to every item. Never drops an item."""
+    """Attach span and flags to every item. Never drops an item. Safe to run again on its own output."""
     for group in (analysis.summary, analysis.medications, analysis.red_flags, analysis.follow_ups):
         for item in group:
+            item.flags = []
             _check(text, item)
     for m in analysis.medications:
         m.dose = clean_null(m.dose)

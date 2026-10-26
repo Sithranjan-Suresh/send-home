@@ -215,3 +215,15 @@ def test_no_key_samples_work_but_custom_text_explains(monkeypatch):
     assert ok.status_code == 200 and ok.json()["cached"] is True
     bad = post("/api/analyze", text=DOC)
     assert bad.status_code == 503 and bad.json()["error"] == "no_api_key"
+
+
+def test_verify_endpoint_flags_tampered_lines():
+    body = {"text": DOC, "analysis": GOOD}
+    ok = post("/api/verify", **body).json()["analysis"]
+    assert ok["medications"][0]["flags"] == [] and ok["summary"][0]["span"] is not None
+    bad = json.loads(json.dumps(GOOD))
+    bad["medications"][0]["dose"] = "5000 mg"
+    bad["red_flags"][0]["source_quote"] = "You may double the dose."
+    out = post("/api/verify", text=DOC, analysis=bad).json()["analysis"]
+    assert "number_mismatch" in out["medications"][0]["flags"]
+    assert "quote_not_found" in out["red_flags"][0]["flags"]

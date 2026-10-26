@@ -137,6 +137,12 @@ def analyze(text: str) -> AnalyzeResponse:
     return resp
 
 
+def reverify(text: str, analysis: Analysis) -> Analysis:
+    """Run the deterministic checks again on an analysis (used by the Break it tamper test)."""
+    check_text(text)
+    return verify_analysis(text, analysis.model_copy(deep=True))
+
+
 def ask(text: str, question: str) -> AskResponse:
     check_text(text)
     question = (question or "").strip()

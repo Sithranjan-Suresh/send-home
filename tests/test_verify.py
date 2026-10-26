@@ -105,3 +105,20 @@ def test_match_type_recorded():
         {"text": "c", "source_quote": "Call your docter if you have a fevr above 101 F."},
         {"text": "d", "source_quote": "Nothing like this appears."}]))
     assert [i.match for i in a.summary] == ["exact", "normalized", "fuzzy", None]
+
+
+def test_reverify_is_idempotent_and_catches_tampering():
+    a = verify_analysis(DOC, _analysis(dose=None))
+    once = [list(m.flags) for m in a.medications]
+    twice = [list(m.flags) for m in verify_analysis(DOC, a).medications]
+    assert once == twice  # no duplicated flags on a second pass
+
+
+def test_break_it_changes_are_caught():
+    a = verify_analysis(DOC, _analysis())
+    assert "number_mismatch" not in a.medications[0].flags
+    a.medications[0].dose = "5000 mg"  # edit the dose, keep the real quote
+    a.summary[0].source_quote = "Double your dose if you miss one."  # fabricate a quote
+    a = verify_analysis(DOC, a)
+    assert "number_mismatch" in a.medications[0].flags
+    assert "quote_not_found" in a.summary[0].flags and a.summary[0].span is None

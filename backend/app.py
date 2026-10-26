@@ -11,14 +11,14 @@ from fastapi.staticfiles import StaticFiles
 from . import config, llm, service
 from .report import build_report
 from .schemas import (AnalyzeRequest, AnalyzeResponse, AskRequest, AskResponse,
-                      TranslateRequest, TranslateResponse)
+                      TranslateRequest, TranslateResponse, VerifyRequest, VerifyResponse)
 
 app = FastAPI(title="Sendhome", docs_url="/docs")
 app.add_middleware(CORSMiddleware, allow_origins=[config.ALLOWED_ORIGIN],
                    allow_methods=["GET", "POST"], allow_headers=["Content-Type"])
 
 # Translate carries the whole analysis back, so it gets a larger body cap.
-BODY_LIMITS = {"/api/translate": 64 * 1024}
+BODY_LIMITS = {"/api/translate": 64 * 1024, "/api/verify": 64 * 1024}
 _hits: dict[str, deque] = defaultdict(deque)
 
 
@@ -117,6 +117,11 @@ def report():
 @app.post("/api/analyze", response_model=AnalyzeResponse)
 def analyze(req: AnalyzeRequest):
     return service.analyze(req.text)
+
+
+@app.post("/api/verify", response_model=VerifyResponse)
+def verify(req: VerifyRequest):
+    return VerifyResponse(analysis=service.reverify(req.text, req.analysis))
 
 
 @app.post("/api/ask", response_model=AskResponse)
