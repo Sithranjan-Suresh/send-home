@@ -41,17 +41,27 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
             {"role": "user", "content": user},
         ],
     }
+    if config.LLM_MODEL.startswith("openai/gpt-oss"):
+        payload["reasoning_effort"] = "low"  # fewer hidden tokens: Groq free tier is token-limited
     if json_mode:
         payload["response_format"] = {"type": "json_object"}
     headers = {"Authorization": f"Bearer {config.LLM_API_KEY}"}
     url = config.LLM_BASE_URL.rstrip("/") + "/chat/completions"
 
     last: Exception | None = None
-    for attempt in range(2):
+    for attempt in range(3):
         try:
             r = httpx.post(url, json=payload, headers=headers, timeout=config.LLM_TIMEOUT_S)
             if r.status_code in _TRANSIENT:
                 last = LLMError(f"provider status {r.status_code}")
+                if r.status_code == 429:  # rate limited: wait as long as the provider asks
+                    try:
+                        wait = min(float(r.headers.get("retry-after", "10")), 30.0)
+                    except ValueError:
+                        wait = 10.0
+                    if attempt < 2:
+                        time.sleep(wait + 1)
+                    continue
             elif r.status_code >= 400:
                 raise LLMError(f"provider status {r.status_code}")
             else:
@@ -62,7 +72,7 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
             last = LLMError("could not reach provider")
         except (KeyError, IndexError, ValueError):
             raise LLMError("unexpected provider response")
-        if attempt == 0:
+        if attempt < 1:
             time.sleep(1)
     raise last or LLMError("unknown provider failure")
 
