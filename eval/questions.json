@@ -1,0 +1,17 @@
+{
+  "_note": "Hand-labelled by reading the sheets. in_document=true means the sheet clearly answers it.",
+  "questions": [
+    {"sheet": "pneumonia.txt", "q": "How long do I keep taking the antibiotic?", "in_document": true},
+    {"sheet": "pneumonia.txt", "q": "When do I need another chest X-ray?", "in_document": true},
+    {"sheet": "heart_failure.txt", "q": "How much fluid can I drink each day?", "in_document": true},
+    {"sheet": "heart_failure.txt", "q": "When should I weigh myself?", "in_document": true},
+    {"sheet": "appendectomy.txt", "q": "When can I shower?", "in_document": true},
+    {"sheet": "appendectomy.txt", "q": "How much can I lift?", "in_document": true},
+    {"sheet": "pneumonia.txt", "q": "Can I take ibuprofen too?", "in_document": false},
+    {"sheet": "pneumonia.txt", "q": "Is it safe to fly on a plane next week?", "in_document": false},
+    {"sheet": "heart_failure.txt", "q": "What is my blood type?", "in_document": false},
+    {"sheet": "heart_failure.txt", "q": "Can I take melatonin to help me sleep?", "in_document": false},
+    {"sheet": "appendectomy.txt", "q": "What is my insurance deductible?", "in_document": false},
+    {"sheet": "appendectomy.txt", "q": "Can I take melatonin to help me sleep?", "in_document": false}
+  ]
+}
