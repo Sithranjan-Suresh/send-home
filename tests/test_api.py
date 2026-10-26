@@ -188,6 +188,7 @@ def test_mock_mode_roundtrip(monkeypatch, field):
 def test_only_builtin_samples_are_cached(monkeypatch):
     from pathlib import Path
 
+    saved = dict(service._cache)
     service._cache.clear()
     sample = Path("samples/pneumonia.txt").read_text(encoding="utf-8")
     quote = "Principal diagnosis: Community-acquired pneumonia, right lower lobe, with transient hypoxemia, resolved."
@@ -201,3 +202,16 @@ def test_only_builtin_samples_are_cached(monkeypatch):
     assert post("/api/analyze", text=DOC).status_code == 200
     assert len(calls) == 3  # user-pasted text is never cached
     service._cache.clear()
+    service._cache.update(saved)
+
+
+def test_no_key_samples_work_but_custom_text_explains(monkeypatch):
+    from pathlib import Path
+
+    monkeypatch.setattr(config, "LLM_API_KEY", "")
+    monkeypatch.setattr(config, "LLM_MOCK", False)
+    sample = Path("samples/pneumonia.txt").read_text(encoding="utf-8")
+    ok = post("/api/analyze", text=sample)
+    assert ok.status_code == 200 and ok.json()["cached"] is True
+    bad = post("/api/analyze", text=DOC)
+    assert bad.status_code == 503 and bad.json()["error"] == "no_api_key"

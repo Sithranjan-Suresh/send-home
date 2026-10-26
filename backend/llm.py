@@ -15,6 +15,10 @@ class LLMError(Exception):
     """Provider returned an error or was unreachable."""
 
 
+class LLMNotConfigured(LLMError):
+    """No API key on the server."""
+
+
 class LLMTimeout(LLMError):
     """Provider did not answer in time."""
 
@@ -36,7 +40,8 @@ def call_llm(system: str, user: str, json_mode: bool = True) -> str:
         from . import mock_llm
 
         return mock_llm.respond(system, user)
-    config.require_key()
+    if not config.LLM_API_KEY:
+        raise LLMNotConfigured("no key")
     last: Exception | None = None
     for model in [config.LLM_MODEL, *config.LLM_FALLBACK_MODELS]:
         try:

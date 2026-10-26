@@ -53,6 +53,12 @@ async def user_error(_: Request, e: service.UserError):
     return err(e.status, e.code, e.message)
 
 
+@app.exception_handler(llm.LLMNotConfigured)
+async def llm_nokey(_: Request, e):
+    return err(503, "no_api_key", "This server has no AI key set, so only the built-in sample sheets work. "
+                                  "Add LLM_API_KEY to .env to analyze your own text (see the README).")
+
+
 @app.exception_handler(llm.LLMRateLimited)
 async def llm_rate(_: Request, e):
     return err(429, "busy", "The AI is busy (free-tier limit). Wait about 20 seconds and press the button again.")
