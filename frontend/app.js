@@ -176,7 +176,7 @@ function renderResults() {
     g.original != null ? h("span", {}, "original grade ", h("b", {}, String(g.original))) : null,
     g.plain != null ? h("span", {}, " → plain grade ", h("b", {}, String(g.plain))) : null);
 
-  const summary = h("section", { class: "card" }, h("h2", {}, "In plain words"),
+  const summary = h("section", { class: "card" }, h("h2", {}, "In plain words"), readAloudButton(a),
     a.summary.map((s) => h("div", { class: "item" }, h("p", {}, s.text), flagBadges(s), sourceBtn(s))));
 
   const medsCard = h("section", { class: "card" }, h("h2", {}, "Your medicines"),
@@ -199,6 +199,26 @@ function renderResults() {
   pane.replaceChildren(
     h("div", { class: "row between", style: "margin-top:16px" }, grade),
     summary, medsCard, flagsCard, fuCard, translateCard(), askCard());
+}
+
+/* Read the summary aloud with the browser's own speech feature (hidden if unsupported). */
+function readAloudButton(a) {
+  if (!("speechSynthesis" in window) || !a.summary.length) return null;
+  const idle = "▶ Read aloud";
+  const btn = h("button", { "aria-pressed": "false" }, idle);
+  const reset = () => { btn.textContent = idle; btn.setAttribute("aria-pressed", "false"); };
+  btn.addEventListener("click", () => {
+    const synth = window.speechSynthesis;
+    if (synth.speaking) { synth.cancel(); return reset(); }
+    const u = new SpeechSynthesisUtterance(a.summary.map((x) => x.text).join(" "));
+    u.lang = "en-US";
+    u.onend = reset;
+    u.onerror = reset;
+    synth.speak(u);
+    btn.textContent = "■ Stop";
+    btn.setAttribute("aria-pressed", "true");
+  });
+  return h("div", { style: "margin-bottom:8px" }, btn);
 }
 
 function medCells(m) {

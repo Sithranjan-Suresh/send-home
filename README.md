@@ -18,6 +18,7 @@ People leave the hospital with dense, jargon-heavy paperwork and little time to 
 5. Switch to Spanish. A separate back-translation into English is shown beside it so you can check a language you don't read. Numbers are compared and mismatches are warned about.
 6. Ask questions. Answers come only from the document; anything else gets exactly *"That isn't in your paperwork — ask your nurse."*
 7. An approximate reading grade is shown for the original and for the plain-language output.
+8. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
 
 Nothing is stored: no database, no accounts, no logging of request text.
 
@@ -98,7 +99,7 @@ Final prompts, run 1 (full details in `eval/results_run1.md`; runs 2 and 3 are a
 - All documents are synthetic. No real patient data was used, and none should be pasted in.
 - No clinical validation. Output can still be wrong; the flags catch missing or unlocatable quotes, not every possible error (for example, a real quote summarized incorrectly in plain language).
 - Spanish is machine-generated and unreviewed; the back-translation is a check, not a guarantee.
-- Text input only. No photo/PDF/OCR.
+- Text input only, English paperwork only (other languages get a clear message). No photo/PDF/OCR.
 - Reading grade is approximate.
 
 ## Future work (ideas, not features)
