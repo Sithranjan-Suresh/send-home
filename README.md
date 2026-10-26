@@ -5,6 +5,13 @@
 > **Synthetic samples only. Not medical advice. Don't paste real patient information.**
 > Sendhome is a hackathon prototype (NextSpark Hacks 2026). Every document in this repo is invented. It has had no clinical validation and does not replace your care team.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Hero: a marker highlights a sentence, a thread links it to its plain-language line, and a missing dose is flagged instead of guessed](docs/screenshots/01-hero.jpg) | ![Click-to-source: the original sentence highlighted, with a verified-lines bar and reading grade](docs/screenshots/02-click-to-source.jpg) |
+| ![A medicine with no dose in the sheet shows "Dose not listed" and every row has a verification receipt](docs/screenshots/03-dose-not-listed.jpg) | ![Report card with reading grade before and after](docs/screenshots/04-report-card.jpg) |
+
 ## The problem
 
 People leave the hospital with dense, jargon-heavy paperwork and little time to understand it. A generic AI summary reads smoothly, but the reader can't check it, and it may state things the paperwork never said. Sendhome is built for the patient or caregiver on discharge day, on a phone.

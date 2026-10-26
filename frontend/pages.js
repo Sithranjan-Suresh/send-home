@@ -218,6 +218,7 @@ function runTable(run) {
 function runBlock(run, open) {
   return h("details", { class: "card run", open: open ? true : null },
     h("summary", {}, run.name, run.total ? ` — medicines ${run.total.medicines}, doses ${run.total.doses}, warning signs ${run.total.red_flags}` : ""),
+    run.header ? h("p", { class: "small" }, run.header.replace(/`/g, "")) : null,
     run.why ? h("p", { class: "small" }, run.why) : null,
     runTable(run),
     h("p", {}, run.misses.length ? h("b", {}, "Misses:") : h("b", {}, "Misses: none in this run.")),
