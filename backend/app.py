@@ -9,6 +9,7 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 from . import config, llm, service
+from .report import build_report
 from .schemas import (AnalyzeRequest, AnalyzeResponse, AskRequest, AskResponse,
                       TranslateRequest, TranslateResponse)
 
@@ -86,6 +87,11 @@ def messages():
         "number_mismatch": config.NUMBER_MISMATCH_MSG,
         "max_chars": config.MAX_CHARS,
     }
+
+
+@app.get("/api/report")
+def report():
+    return build_report()
 
 
 @app.post("/api/analyze", response_model=AnalyzeResponse)
