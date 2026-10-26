@@ -45,8 +45,22 @@ def check_text(text: str) -> str:
     return text
 
 
+_EN_WORDS = {"the", "and", "to", "of", "a", "in", "for", "you", "your", "if", "or", "with", "is",
+             "take", "call", "are", "on", "be", "at", "by", "as", "not", "do", "may", "have"}
+
+
+def looks_english(text: str) -> bool:
+    """Cheap guard: English paperwork is full of common function words."""
+    words = re.findall(r"[a-z']+", text.lower())
+    if len(words) < 15:
+        return True  # too short to judge
+    return sum(w in _EN_WORDS for w in words) / len(words) >= 0.08
+
+
 def analyze(text: str) -> AnalyzeResponse:
     check_text(text)
+    if not looks_english(text):
+        raise UserError("not_english", "Sendhome reads English paperwork only for now.")
     obj = _llm_json(prompts.ANALYZE_SYSTEM, prompts.analyze_user(text),
                     validate=lambda o: Analysis(**o))
     analysis = Analysis(**obj)
