@@ -46,7 +46,8 @@ Rules:
 1. Translate ONLY the string values in the JSON you are given. Keep the same JSON keys, structure and order.
 2. Keep every number, unit and drug name exactly as written. Do not add, remove or explain anything.
 3. Keep null values as null. Keep the enum value of "urgency" unchanged.
-4. Output ONLY the translated JSON object."""
+4. The text speaks to the reader as "you". Keep that second person: use the formal "usted" (or the matching verb forms). Never change "you" into a third person such as "he" or "she", and never assume the reader's gender.
+5. Output ONLY the translated JSON object."""
 
 
 def translate_user(payload_json: str) -> str:
@@ -59,7 +60,8 @@ Rules:
 1. Translate ONLY the string values in the JSON you are given. Keep the same JSON keys, structure and order.
 2. Translate faithfully, even if the text looks odd or wrong. Do not correct, add or remove anything.
 3. Keep every number, unit and drug name exactly as written. Keep null as null.
-4. Output ONLY the translated JSON object."""
+4. Translate "usted" and second-person verb forms as "you". Do not turn them into "he" or "she".
+5. Output ONLY the translated JSON object."""
 
 
 def backtranslate_user(payload_json: str) -> str:

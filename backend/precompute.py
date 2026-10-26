@@ -28,6 +28,21 @@ def retry(fn, label: str):
     raise SystemExit(f"gave up on {label}")
 
 
+def translate_only() -> None:
+    """Regenerate only the saved translations (keeps the saved analyses and answers)."""
+    config.LLM_FALLBACK_MODELS = []
+    for key in [k for k in service._cache if k[0] == "translate"]:
+        del service._cache[key]
+    for key in [k for k in list(service._cache) if k[0] == "analyze"]:
+        res = service._cache[key]
+        print("translate", key[1][:8], flush=True)
+        retry(lambda: service.translate(res.analysis, "es"), "translate")
+    meta = dict(service.CACHE_META)
+    meta["translations_model"] = config.LLM_MODEL
+    service.save_precomputed(meta)
+    print("saved translations", len([k for k in service._cache if k[0] == "translate"]))
+
+
 def main() -> None:
     config.LLM_FALLBACK_MODELS = []  # saved results must come from the main model
     root = service.PRECOMPUTED.parent
@@ -46,4 +61,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    translate_only() if "--translate-only" in sys.argv else main()
