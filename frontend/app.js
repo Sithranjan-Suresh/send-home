@@ -75,15 +75,30 @@ async function api(path, body) {
 
 /* ---------- render ---------- */
 function render() {
+  const route = currentRoute();
+  renderNav(route);
   renderInput();
   renderStatus();
+  const onPlan = route === "plan";
+  $("input-pane").hidden = !onPlan;
+  $("page").hidden = onPlan;
   const has = !!(state.analysis && state.analysis.is_discharge_doc);
-  $("results").hidden = !has;
+  $("results").hidden = !(onPlan && has);
+  if (!onPlan) {
+    renderPage(route);
+    return;
+  }
   if (has) {
     renderResults();
     renderSource();
+    if (state.scrollToMark) {
+      state.scrollToMark = false;
+      scrollToMark();
+    }
   }
 }
+
+window.addEventListener("hashchange", () => { window.scrollTo(0, 0); render(); });
 
 function renderInput() {
   const pane = $("input-pane");
@@ -276,11 +291,21 @@ function renderSource() {
     body));
 }
 
-function showSource(spans) {
-  state.highlights = spans;
-  renderSource();
+function scrollToMark() {
   const mark = document.querySelector("#src-text mark");
   if (mark) mark.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+}
+
+function showSource(spans) {
+  state.highlights = spans;
+  if (currentRoute() !== "plan") {
+    // Other pages link back to the Plan page, where the original text is shown.
+    state.scrollToMark = true;
+    location.hash = "#/";
+    return;
+  }
+  renderSource();
+  scrollToMark();
 }
 
 /* ---------- translate ---------- */

@@ -20,6 +20,18 @@ People leave the hospital with dense, jargon-heavy paperwork and little time to 
 7. An approximate reading grade is shown for the original and for the plain-language output.
 8. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
 
+### Pages
+
+The app has five pages (hash routes), all sharing one in-memory analysis, so nothing is stored:
+
+| Page | Address | What it shows |
+|---|---|---|
+| Plan | `#/` | Paste/sample, plain-language plan, click-to-source, translation, Ask |
+| Medicine schedule | `#/schedule` | Medicines across morning / midday / evening / bedtime, "once a day", "only when needed", and "schedule unclear". Times are suggestions from the sheet's wording only |
+| Warning signs | `#/warnings` | Large-type ER and "call your care team" lists, print-friendly |
+| Questions for your nurse | `#/nurse` | Everything flagged (missing doses, unverified lines, refused questions) as a printable checklist |
+| Report card | `#/report` | The accuracy and reading-grade results from `eval/`, including earlier failed runs |
+
 Nothing is stored: no database, no accounts, no logging of request text.
 
 ## How it works
