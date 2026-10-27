@@ -8,7 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 
-from . import config, llm, service
+from . import anakin, config, llm, service
 from .report import build_report
 from .schemas import (AnalyzeRequest, AnalyzeResponse, AskRequest, AskResponse,
                       TranslateRequest, TranslateResponse, VerifyRequest, VerifyResponse)
@@ -107,6 +107,19 @@ def messages():
         "max_chars": config.MAX_CHARS,
         "cache_meta": service.CACHE_META,
     }
+
+
+@app.exception_handler(anakin.AnakinError)
+async def anakin_error(_: Request, e):
+    return err(502, "label_unavailable", "Couldn't reach the official label source right now. Please try again.")
+
+
+@app.get("/api/label")
+def label(name: str = ""):
+    """Official label excerpt for one medicine name (only the name is sent to Anakin)."""
+    if not anakin.valid_name(name):
+        return err(400, "bad_name", "That doesn't look like a medicine name.")
+    return anakin.lookup(name)
 
 
 @app.get("/api/report")

@@ -1,0 +1,128 @@
+{
+ "labels": {
+  "amoxicillin clavulanate": {
+   "query": "Amoxicillin-clavulanate",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Amoxicillin and Clavulanic Acid",
+   "url": "https://medlineplus.gov/druginfo/meds/a685024.html",
+   "purpose": "Amoxicillin and clavulanic acid is used to treat certain infections caused by bacteria, including infections of the ears, lungs, sinus, skin, and urinary tract. Amoxicillin is in a class of medications called penicillin-like antibiotics.",
+   "usage": "Amoxicillin and clavulanic acid comes as a tablet, a chewable tablet, and a suspension (liquid) to take by mouth. It is taken with a meal or snack every 8 to 12 hours (2 to 3 times a day). Take it around the same times every day."
+  },
+  "acetaminophen": {
+   "query": "Acetaminophen",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Acetaminophen",
+   "url": "https://medlineplus.gov/druginfo/meds/a681004.html",
+   "purpose": "Acetaminophen is used to relieve mild to moderate pain and to reduce fever. Acetaminophen is in a class of medications called analgesics (pain relievers) and antipyretics (fever reducers).",
+   "usage": "Acetaminophen comes as a tablet, chewable tablet, capsule, suspension or solution (liquid), extended-release (long-acting) tablet, and orally disintegrating tablet (tablet that dissolves quickly in the mouth), to take by mouth, with or without food."
+  },
+  "guaifenesin": {
+   "query": "Guaifenesin",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Guaifenesin",
+   "url": "https://medlineplus.gov/druginfo/meds/a682494.html",
+   "purpose": "Guaifenesin is used to relieve chest congestion. Guaifenesin may help control symptoms but does not treat the cause of symptoms or speed recovery.",
+   "usage": "Guaifenesin comes as a tablet, a capsule, an extended-release (long-acting) tablet, dissolving granules, and a syrup (liquid) to take by mouth. The tablets, capsules, dissolving granules, and syrup are usually taken with or without food every 4 hours as needed. The extended-release tablet is usually taken with or without food every 12 hours."
+  },
+  "albuterol inhalation": {
+   "query": "Albuterol inhaler",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Albuterol Oral Inhalation",
+   "url": "https://medlineplus.gov/druginfo/meds/a682145.html",
+   "purpose": "Albuterol is used to prevent and treat difficulty breathing, wheezing, shortness of breath, coughing, and chest tightness caused by lung diseases such as asthma and chronic obstructive pulmonary disease (COPD; a group of diseases that affect the lungs and airways).",
+   "usage": "Albuterol comes as a solution (liquid) to inhale by mouth using a special jet nebulizer (machine that turns medication into a mist that can be inhaled)"
+  },
+  "furosemide": {
+   "query": "Furosemide",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Furosemide",
+   "url": "https://medlineplus.gov/druginfo/meds/a682858.html",
+   "purpose": "Furosemide is used alone or with other medications to treat high blood pressure.",
+   "usage": "Furosemide comes as a tablet and as a solution (liquid) to take by mouth."
+  },
+  "lisinopril": {
+   "query": "Lisinopril",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Lisinopril",
+   "url": "https://medlineplus.gov/druginfo/meds/a692051.html",
+   "purpose": "Lisinopril is used alone or in combination with other medications to treat high blood pressure in adults and children 6 years of age and older.",
+   "usage": "Lisinopril comes as a tablet and a solution (liquid) to take by mouth."
+  },
+  "metoprolol": {
+   "query": "Metoprolol succinate",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Metoprolol",
+   "url": "https://medlineplus.gov/druginfo/meds/a682864.html",
+   "purpose": "Metoprolol is used to treat high blood pressure, angina (chest pain) and heart failure. Metoprolol also is used to improve survival after a heart attack .",
+   "usage": "Metoprolol comes as a tablet, an extended-release (long-acting) tablet, and an extended-release capsule to take by mouth."
+  },
+  "chloride potassium": {
+   "query": "Potassium chloride",
+   "found": false,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false
+  },
+  "oxycodone": {
+   "query": "Oxycodone",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Oxycodone",
+   "url": "https://medlineplus.gov/druginfo/meds/a682132.html",
+   "purpose": "Oxycodone is used to relieve severe pain.",
+   "usage": "Oxycodone comes as a solution (liquid), a tablet, a capsule, an extended-release (long-acting) tablet, and an extended-release capsule to take by mouth. Take the solution, tablet, and capsule with or without food every 4 to 6 hours as needed for pain."
+  },
+  "ibuprofen": {
+   "query": "Ibuprofen",
+   "found": true,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false,
+   "matched": "Ibuprofen",
+   "url": "https://medlineplus.gov/druginfo/meds/a682159.html",
+   "purpose": "Prescription ibuprofen is used to relieve pain, tenderness, swelling, and stiffness caused by osteoarthritis (arthritis caused by a breakdown of the lining of the joints) and rheumatoid arthritis (arthritis caused by swelling of the lining of the joints).",
+   "usage": "Prescription ibuprofen comes as a tablet and suspension (liquid) to take by mouth."
+  },
+  "docusate": {
+   "query": "Docusate",
+   "found": false,
+   "source": "MedlinePlus (U.S. National Library of Medicine)",
+   "via": "Anakin",
+   "fetched": "2026-10-26",
+   "cached": false
+  }
+ }
+}

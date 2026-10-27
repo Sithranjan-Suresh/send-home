@@ -11,6 +11,8 @@ LLM_API_KEY = os.getenv("LLM_API_KEY", "")
 LLM_MODEL = os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
 LLM_BASE_URL = os.getenv("LLM_BASE_URL", "https://api.groq.com/openai/v1")
 ALLOWED_ORIGIN = os.getenv("ALLOWED_ORIGIN", "http://localhost:8000")
+ANAKIN_API_KEY = os.getenv("ANAKIN_API_KEY", "")  # optional: keyless free tier works without it
+ANAKIN_BASE = os.getenv("ANAKIN_BASE", "https://api.anakin.io")
 LLM_MOCK = os.getenv("LLM_MOCK", "0") == "1"
 WARM_SAMPLES = os.getenv("WARM_SAMPLES", "0") == "1"
 LLM_FALLBACK_MODELS = [m.strip() for m in os.getenv("LLM_FALLBACK_MODELS", "openai/gpt-oss-20b,qwen/qwen3.8-27b").split(",") if m.strip()]
