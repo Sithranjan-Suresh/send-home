@@ -95,6 +95,14 @@ Open <http://localhost:8000>. Run the tests with `python -m pytest -q tests` (no
 - **Anything you paste, and any other question, always goes to the live model.** Pasted text is never cached or stored.
 - If the main model's daily limit is exhausted, the client falls back to `LLM_FALLBACK_MODELS` (default `openai/gpt-oss-20b`, then `qwen/qwen3.8-27b`), and if every model is limited the app says so and asks you to retry shortly.
 
+## Deploy (optional, free)
+
+`render.yaml` is included for [Render](https://render.com): Dashboard > New > Blueprint > select this repo. It starts the app with `uvicorn backend.app:app --host 0.0.0.0 --port $PORT`, checks `/api/health`, and turns on a per-IP rate limit (`RATE_LIMIT_PER_MIN=20`).
+
+- Without `LLM_API_KEY` the deployed site still runs the three built-in samples (saved results), Break it, official labels, all five pages and the report card. Pasted text gets a clear "no AI key" message.
+- With `LLM_API_KEY` set (as a secret, never in git) pasted text runs live. The key stays on the server.
+- The free Render tier sleeps after inactivity, so the first request after a pause can take about a minute.
+
 ## Accuracy check (5 synthetic sheets)
 
 `python eval/run_eval.py` analyzes five hand-written synthetic sheets and compares them with expectations I wrote by reading the sheets (`eval/expected.json`). Model: `openai/gpt-oss-120b` via Groq, temperature 0. **This is a small self-check on invented documents, not clinical validation.**

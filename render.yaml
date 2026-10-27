@@ -1,0 +1,20 @@
+# One-click deploy on Render (free web service): Dashboard > New > Blueprint > pick this repo.
+services:
+  - type: web
+    name: sendhome
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn backend.app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: LLM_API_KEY      # optional: without it only the 3 built-in samples work
+        sync: false
+      - key: ANAKIN_API_KEY   # optional: Anakin's keyless free tier works without it
+        sync: false
+      - key: RATE_LIMIT_PER_MIN
+        value: "20"
+      - key: WARM_SAMPLES
+        value: "0"

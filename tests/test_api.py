@@ -227,3 +227,16 @@ def test_verify_endpoint_flags_tampered_lines():
     out = post("/api/verify", text=DOC, analysis=bad).json()["analysis"]
     assert "number_mismatch" in out["medications"][0]["flags"]
     assert "quote_not_found" in out["red_flags"][0]["flags"]
+
+
+def test_rate_limit_uses_forwarded_ip(monkeypatch):
+    from backend import app as appmod
+
+    monkeypatch.setattr(config, "RATE_LIMIT_PER_MIN", 2)
+    appmod._hits.clear()
+    fake(monkeypatch, GOOD)
+    a = {"X-Forwarded-For": "1.1.1.1"}
+    b = {"X-Forwarded-For": "2.2.2.2"}
+    codes = [client.post("/api/analyze", json={"text": DOC}, headers=h).status_code for h in (a, a, a, b)]
+    assert codes == [200, 200, 429, 200]  # third from the same client is limited; another client is not
+    appmod._hits.clear()

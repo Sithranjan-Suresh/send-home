@@ -34,7 +34,9 @@ async def guard(request: Request, call_next):
         if length is None or not length.isdigit() or int(length) > limit:
             return err(413, "too_large", "That request is too large.")
         if config.RATE_LIMIT_PER_MIN:
-            ip = request.client.host if request.client else "?"
+            # Behind a hosting proxy every request shares one socket address; use the forwarded client IP.
+            fwd = request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+            ip = fwd or (request.client.host if request.client else "?")
             now = time.monotonic()
             q = _hits[ip]
             while q and now - q[0] > 60:
