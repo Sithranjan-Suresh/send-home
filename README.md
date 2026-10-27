@@ -1,5 +1,7 @@
 # Sendhome
 
+**Live demo: <https://sendhome-uhw9.onrender.com>** (free hosting: the first load after a pause can take about a minute).
+
 **A discharge plan you can check.** Sendhome turns a hospital discharge sheet into a plain-language plan where every line links back to the exact sentence in the original paperwork, and anything it can't verify is flagged "confirm with your nurse."
 
 > **Synthetic samples only. Not medical advice. Don't paste real patient information.**

@@ -35,5 +35,6 @@ Photo/PDF input with OCR; more languages reviewed by native speakers; a clinicia
 Python, FastAPI, Pydantic, httpx, pytest, HTML/CSS/JavaScript, Groq (openai/gpt-oss-120b, gpt-oss-20b, qwen3.8-27b), Anakin (anakin.io) for official-label lookups via MedlinePlus. Built with the help of Claude Code (AI coding assistant).
 
 ## Links
+- Try it live: https://sendhome-uhw9.onrender.com (free hosting; the first load after a pause can take about a minute)
 - Repo: https://github.com/Sithranjan-Suresh/send-home
 - Video: _(add after recording)_
