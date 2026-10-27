@@ -172,7 +172,8 @@ def lookup(name: str) -> dict:
         if parsed["usage"] or parsed["purpose"]:
             result.update(found=True, matched=matched, url=url, **parsed)
     with _lock:
-        _cache[key] = dict(result)
+        if len(_cache) < 500:  # bounded: public label text only
+            _cache[key] = dict(result)
     return result
 
 
