@@ -29,6 +29,7 @@ const state = {
   highlights: [],
   loading: null, // "analyze" | "translate" | "ask" | null
   error: null,
+  labels: {}, // official-label lookups by medicine name (public MedlinePlus text only)
 };
 
 /* ---------- tiny DOM helper (text only, never HTML) ---------- */
@@ -386,12 +387,16 @@ function medCells(m) {
 function medTable(meds) {
   const table = h("table", { class: "meds-table" },
     h("thead", {}, h("tr", {}, ["Medicine", "Dose", "When", "Why", ""].map((t) => h("th", {}, t)))),
-    h("tbody", {}, meds.map((m) => {
+    h("tbody", {}, meds.flatMap((m) => {
       const c = medCells(m);
-      return h("tr", {},
-        h("td", {}, h("b", {}, m.name), flagBadges(m, { skipDose: true })),
-        h("td", {}, c.dose), h("td", {}, c.schedule), h("td", {}, c.purpose),
-        h("td", {}, sourceBtn(m)));
+      const panel = labelPanel(m.name);
+      return [
+        h("tr", {},
+          h("td", {}, h("b", {}, m.name), flagBadges(m, { skipDose: true })),
+          h("td", {}, c.dose), h("td", {}, c.schedule), h("td", {}, c.purpose),
+          h("td", {}, sourceBtn(m), labelBtn(m))),
+        panel ? h("tr", { class: "label-row" }, h("td", { colspan: "5" }, panel)) : null,
+      ];
     })));
   const cards = h("div", { class: "meds" }, meds.map((m) => {
     const c = medCells(m);
@@ -399,9 +404,57 @@ function medTable(meds) {
       h("div", { class: "name" }, m.name),
       h("dl", {}, h("dt", {}, "Dose"), h("dd", {}, c.dose), h("dt", {}, "When"), h("dd", {}, c.schedule),
         h("dt", {}, "Why"), h("dd", {}, c.purpose)),
-      flagBadges(m, { skipDose: true }), sourceBtn(m));
+      flagBadges(m, { skipDose: true }), sourceBtn(m), labelBtn(m), labelPanel(m.name));
   }));
   return h("div", {}, table, cards);
+}
+
+/* ---------- official label lookup (MedlinePlus, fetched with Anakin) ---------- */
+function labelBtn(m) {
+  const L = state.labels[m.name];
+  return h("button", { class: "link label-btn", "aria-expanded": L && L.open ? "true" : "false", onclick: () => toggleLabel(m.name) },
+    L && L.open ? "Hide official label" : "Official label");
+}
+
+async function toggleLabel(name) {
+  const L = state.labels[name];
+  if (L && !L.error) {
+    L.open = !L.open;
+    return render();
+  }
+  state.labels[name] = { open: true, loading: true };
+  render();
+  try {
+    const r = await fetch("/api/label?name=" + encodeURIComponent(name));
+    const data = await r.json();
+    if (!r.ok) throw new Error(data.message || "Couldn't load the official label.");
+    state.labels[name] = { open: true, data };
+  } catch (err) {
+    state.labels[name] = { open: true, error: err.message || "Couldn't load the official label." };
+  }
+  render();
+}
+
+function labelPanel(name) {
+  const L = state.labels[name];
+  if (!L || !L.open) return null;
+  const head = h("div", { class: "label-head" }, h("b", {}, "Official label"), h("span", { class: "label-tag" }, "Not from your paperwork"));
+  if (L.loading) return h("div", { class: "label-panel" }, head, h("p", { class: "small" }, h("span", { class: "spinner" }), "Checking MedlinePlus through Anakin…"));
+  if (L.error) return h("div", { class: "label-panel" }, head, h("p", {}, L.error), h("button", { class: "link", onclick: () => { delete state.labels[name]; toggleLabel(name); } }, "Try again"));
+  const d = L.data;
+  if (!d.found) return h("div", { class: "label-panel" }, head, h("p", {}, "We couldn't match this medicine to an official MedlinePlus page. Ask your pharmacist or nurse."), labelFoot(d));
+  return h("div", { class: "label-panel" }, head,
+    d.purpose ? h("div", { class: "label-block" }, h("span", { class: "label-k" }, "What it's for"), h("blockquote", {}, d.purpose)) : null,
+    d.usage ? h("div", { class: "label-block" }, h("span", { class: "label-k" }, "How it's taken"), h("blockquote", {}, d.usage)) : null,
+    h("p", { class: "small" }, "General information about the medicine, not your prescription. If it differs from your paperwork, ask your pharmacist."),
+    labelFoot(d));
+}
+
+function labelFoot(d) {
+  const link = d.url && /^https:\/\/medlineplus\.gov\//.test(d.url)
+    ? h("a", { href: d.url, target: "_blank", rel: "noopener noreferrer" }, "Read the full page on MedlinePlus ↗") : null;
+  return h("div", { class: "label-foot" }, link,
+    h("span", { class: "small" }, `Source: ${d.source}. Fetched with Anakin${d.fetched ? ", " + d.fetched : ""}.`));
 }
 
 function redGroup(kind, title, items) {

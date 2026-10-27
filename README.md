@@ -11,7 +11,7 @@
 |---|---|
 | ![Hero: a marker highlights a sentence, a thread links it to its plain-language line, and a missing dose is flagged instead of guessed](docs/screenshots/01-hero.jpg) | ![Click-to-source: the original sentence highlighted, with a verified-lines bar and reading grade](docs/screenshots/02-click-to-source.jpg) |
 | ![A medicine with no dose in the sheet shows "Dose not listed" and every row has a verification receipt](docs/screenshots/03-dose-not-listed.jpg) | ![Report card with reading grade before and after](docs/screenshots/04-report-card.jpg) |
-| ![Break it: two corrupted lines, both caught by the checker, verified count drops to 19 of 20](docs/screenshots/05-break-it.jpg) | |
+| ![Official label: a MedlinePlus excerpt fetched with Anakin, labelled as not from the paperwork](docs/screenshots/06-official-label-anakin.jpg) | ![Break it: two corrupted lines, both caught by the checker, verified count drops to 19 of 20](docs/screenshots/05-break-it.jpg) |
 
 ## The problem
 
@@ -27,7 +27,8 @@ People leave the hospital with dense, jargon-heavy paperwork and little time to 
 6. Ask questions. Answers come only from the document; anything else gets exactly *"That isn't in your paperwork — ask your nurse."*
 7. An approximate reading grade is shown for the original and for the plain-language output.
 8. **Break it:** a tamper test. One click corrupts two lines of the plan (it multiplies a dose by ten and adds a dangerous false line with a made-up quote). The server's checker re-verifies them against your original paperwork and flags both. The verified count drops, the lines show "Edited by Break it", and "Restore original" undoes it.
-9. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
+9. **Official label (powered by Anakin):** every medicine row has an "Official label" button. The server asks the [Anakin](https://anakin.io) web-data API to fetch the medicine's MedlinePlus page (U.S. National Library of Medicine). Plain code then extracts word-for-word excerpts ("What it's for", "How it's taken") and shows them with a link, in a box labelled "Not from your paperwork". If no page matches, it says so instead of guessing. **Only the generic medicine name is sent to Anakin, never your text.** Anakin also works without a key on its keyless free tier; set `ANAKIN_API_KEY` in `.env` to use your own credits.
+10. A **Read aloud** button reads the summary using the browser's built-in speech feature (hidden where unsupported).
 
 ### Pages
 
@@ -56,6 +57,7 @@ FastAPI (stateless)
    |-- llm.py          one function: call_llm(system, user), temperature 0, retry/backoff
    |-- service.py      analyze / ask / translate logic
    |-- verify.py       quote location, spans, flags (deterministic code, not the model)
+   |-- anakin.py       official-label lookup: Anakin fetches MedlinePlus, code extracts verbatim excerpts
    |-- readability.py  approximate Flesch-Kincaid grade
    '-- app.py          routes, validation, error handling
 ```
@@ -137,6 +139,7 @@ Final prompts, run 1 (full details in `eval/results_run1.md`; runs 2 and 3 are a
 
 ## Built with, and AI assistance
 
+- **Sponsor tool:** [Anakin](https://anakin.io) (web-data API) fetches MedlinePlus pages for the official-label feature. Public label text for the sample medicines is saved in `samples/labels.json` so the demo works if Anakin is slow or out of credits; rebuild with `python -m backend.precompute_labels`.
 - **Backend:** Python, FastAPI, Uvicorn, Pydantic, httpx, pytest.
 - **Frontend:** plain HTML, CSS and JavaScript (no framework, no build step).
 - **LLM:** Groq (OpenAI-compatible chat completions API): `openai/gpt-oss-120b` by default, with `openai/gpt-oss-20b` and `qwen/qwen3.8-27b` as fallbacks. The saved sample results were produced with `qwen/qwen3.8-27b`; the accuracy tables below were produced with `openai/gpt-oss-120b`. A one-sheet side check of the two fallback models is in `eval/model_runs/`.

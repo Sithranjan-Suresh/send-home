@@ -231,7 +231,7 @@ textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 5px 
 
 /* ---------- results ---------- */
 .results { display: grid; gap: 22px; grid-template-columns: 1fr; margin-top: 8px; }
-@media (min-width: 980px) {
+@media (min-width: 1200px) {
   .results { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: start; }
   #source-pane { position: sticky; top: 84px; max-height: calc(100vh - 100px); display: flex; flex-direction: column; }
   #source-pane .card { display: flex; flex-direction: column; min-height: 0; margin: 18px 0 0; }
@@ -441,3 +441,33 @@ table.meds-table td:nth-child(2), table.meds-table th:nth-child(2) { min-width: 
 button.break { border-color: var(--coral); color: var(--coral-ink); background: #fff; font-weight: 600; }
 button.break:hover:not(:disabled) { background: var(--coral); color: #fff; border-color: var(--coral); }
 .badge.tamper { background: var(--coral-soft); color: var(--coral-ink); border: 1px dashed var(--coral); }
+
+/* ---------- official label (Anakin) ---------- */
+.label-btn { display: block; }
+.label-row td { padding: 0 12px 14px; border-top: 0 !important; }
+.label-panel { margin-top: 10px; padding: 14px 16px; border-radius: 16px; background: #f4f8ff; border: 1px solid rgba(10, 27, 51, .14); display: grid; gap: 8px; }
+.label-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; }
+.label-tag { font: 500 .72rem var(--mono); letter-spacing: .04em; text-transform: uppercase; background: var(--ink); color: #fff; border-radius: 999px; padding: 3px 10px; }
+.label-block { display: grid; gap: 2px; }
+.label-k { font: 500 .74rem var(--mono); text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.label-panel blockquote { margin: 0; padding: 2px 0 2px 12px; border-left: 4px solid var(--marker-deep); font-size: .96rem; color: var(--ink-2); }
+.label-foot { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: center; }
+.label-foot a { font-weight: 600; color: var(--ink); }
+.foot .powered { margin-top: 10px; }
+.foot .powered a { color: var(--marker); font-weight: 600; }
+
+/* medicines table: fixed layout so it never outgrows its card (the label panel spans all columns) */
+table.meds-table { table-layout: fixed; }
+table.meds-table th:nth-child(1) { width: 23%; }
+table.meds-table th:nth-child(2) { width: 25%; min-width: 0; }
+table.meds-table th:nth-child(3) { width: 22%; }
+table.meds-table th:nth-child(4) { width: 12%; }
+table.meds-table th:nth-child(5) { width: 18%; }
+table.meds-table td:nth-child(2) { min-width: 0; }
+table.meds-table td { overflow-wrap: anywhere; }
+.label-row td { overflow: visible; }
+table.meds-table th:nth-child(1) { width: 25%; }
+table.meds-table th:nth-child(2) { width: 22%; }
+table.meds-table th:nth-child(5) { width: 20%; }
+table.meds-table td:first-child { overflow-wrap: break-word; word-break: normal; hyphens: none; }
+table.meds-table td:last-child button { white-space: normal; text-align: left; }
